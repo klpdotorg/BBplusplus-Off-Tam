@@ -56,7 +56,7 @@ Game.appLoginScreen.prototype = {
 		titleBar.drawRect(0, 0, 540, 80);
 
 
-		var titleTxt = _this.add.text(_this.world.centerX - 140, 45, "Building Blocks++");
+		var titleTxt = _this.add.text(_this.world.centerX - 40, 45, "Building Blocks 6-8 by Akshara");
 		titleTxt.x = Math.round(titleTxt.x);
 		titleTxt.anchor.setTo(0.5);
 		titleTxt.align = 'center';

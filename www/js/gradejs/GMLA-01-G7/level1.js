@@ -9,7 +9,7 @@ Game.GMLA_01_G7level1.prototype =
         this.Stararr = param;
         this.score = score;
         _this = this;
-        _this.languageSelected = document.getElementById("LANGUAGE").innerHTML;
+        _this.languageSelected = window.languageSelected;
 
         if (_this.languageSelected == null
             || _this.languageSelected == " "
@@ -19,37 +19,37 @@ Game.GMLA_01_G7level1.prototype =
         else console.log("Language selected: " + _this.languageSelected);
         _this.clickSound = document.createElement('audio');
         _this.clickSoundsrc = document.createElement('source');
-        _this.clickSoundsrc.setAttribute("src", window.baseUrl +"sounds/ClickSound.mp3");
+        _this.clickSoundsrc.setAttribute("src", window.baseUrl + "sounds/ClickSound.mp3");
         _this.clickSound.appendChild(_this.clickSoundsrc);
 
         _this.successSound = document.createElement('audio');
         _this.successSoundsrc = document.createElement('source');
-        _this.successSoundsrc.setAttribute("src", window.baseUrl +"sounds/Success.mp3");
+        _this.successSoundsrc.setAttribute("src", window.baseUrl + "sounds/Success.mp3");
         _this.successSound.appendChild(_this.successSoundsrc);
 
         _this.celebrationSound = document.createElement('audio');
         _this.celebrationSoundsrc = document.createElement('source');
-        _this.celebrationSoundsrc.setAttribute("src", window.baseUrl +"sounds/celebration.mp3");
+        _this.celebrationSoundsrc.setAttribute("src", window.baseUrl + "sounds/celebration.mp3");
         _this.celebrationSound.appendChild(_this.celebrationSoundsrc);
 
         _this.counterCelebrationSound = document.createElement('audio');
         _this.counterCelebrationSoundsrc = document.createElement('source');
-        _this.counterCelebrationSoundsrc.setAttribute("src", window.baseUrl +"sounds/counter_celebration.mp3");
+        _this.counterCelebrationSoundsrc.setAttribute("src", window.baseUrl + "sounds/counter_celebration.mp3");
         _this.counterCelebrationSound.appendChild(_this.counterCelebrationSoundsrc);
 
         _this.wrongans = document.createElement('audio');
         _this.wronganssrc = document.createElement('source');
-        _this.wronganssrc.setAttribute("src", window.baseUrl +"sounds/wrongans.mp3");
+        _this.wronganssrc.setAttribute("src", window.baseUrl + "sounds/WrongCelebrationSound.mp3");
         _this.wrongans.appendChild(_this.wronganssrc);
 
         _this.framechange = document.createElement('audio');
         _this.framechangesrc = document.createElement('source');
-        _this.framechangesrc.setAttribute("src", window.baseUrl +"sounds/Frame_change_sound.mp3");
+        _this.framechangesrc.setAttribute("src", window.baseUrl + "sounds/Frame_change_sound.mp3");
         _this.framechange.appendChild(_this.framechangesrc);
 
         _this.snapSound = document.createElement('audio');
         _this.snapSoundsrc = document.createElement('source');
-        _this.snapSoundsrc.setAttribute("src", window.baseUrl +"sounds/snapSound.mp3");
+        _this.snapSoundsrc.setAttribute("src", window.baseUrl + "sounds/snapSound.mp3");
         _this.snapSound.appendChild(_this.snapSoundsrc);
 
         _this.Ask_Question1 = _this.createAudio("GMLA_01_G7_a1");//Adjust the protractor to find the angle.
@@ -64,6 +64,9 @@ Game.GMLA_01_G7level1.prototype =
     },
 
     create: function (game) {
+        _this.hintBtn = _this.add.sprite(670, 6, 'bulb');
+        _this.hintBtn.scale.setTo(0.5, 0.6);
+        _this.hintBtn.visible = false;
 
         //* show the demo video
         _this.time.events.add(1, function () {
@@ -86,6 +89,7 @@ Game.GMLA_01_G7level1.prototype =
     },
 
     gameCreate: function (game) {
+        _this.hint_flag = 0;
         _this.count1 = 0;
         _this.speakerbtn;
         _this.background;
@@ -172,8 +176,8 @@ Game.GMLA_01_G7level1.prototype =
         _this.numGroup;
 
         // BULB
-        _this.hintBtn = _this.add.sprite(670, 6, 'bulb');
-        _this.hintBtn.scale.setTo(0.5, 0.6);
+        _this.hintBtn.bringToTop();
+        _this.hintBtn.visible = true;
         _this.hintBtn.smoothed = false;
         _this.hintBtnAnim = _this.hintBtn.animations.add('hint');
         _this.hintBtnAnim.play(15);
@@ -185,10 +189,11 @@ Game.GMLA_01_G7level1.prototype =
 
         _this.hintBtn.events.onInputDown.add(function () {
             console.log("inside hintbutton function");
+            //* show the demo video
             _this.hintBtn.inputEnabled = false;
             _this.hintBtn.input.useHandCursor = false;
-            //* show the demo video
             _this.time.events.add(1, function () {
+                //   console.log(_this.hintBtn.inputEnabled, "status of hintBtn");
                 _this.ViewDemoVideo();
             });
 
@@ -256,7 +261,7 @@ Game.GMLA_01_G7level1.prototype =
             _this.AnsTimerCount++;
         }, _this);
 
-        
+
 
         //  Start the timer running - this is important!
         //  It won't start automatically, allowing you to hook it to button events and the like.
@@ -284,6 +289,10 @@ Game.GMLA_01_G7level1.prototype =
         _this.Initial_randomizing();
         //starting the game with initial screen display
         _this.showInitialScreen();
+
+        _this.hintBtn.inputEnabled = true;
+        _this.hintBtn.input.useHandCursor = true;
+        _this.hint_flag = 1;
 
     },
     stopVoice: function () {
@@ -1065,7 +1074,7 @@ Game.GMLA_01_G7level1.prototype =
 
     rightbtnClicked1: function (target) {
         _this.clickSound.play();
-        
+
         if (_this.AnswerBox.name == _this.aArr[_this.count1]) //compares with answerbox and real answer
         {
             _this.noofAttempts++;
@@ -1315,13 +1324,13 @@ Game.GMLA_01_G7level1.prototype =
     //after adding answer to numberpad and clicking on tick buttn for validation
     rightbtnClicked: function (target) {
         _this.clickSound.play();
-        
+
 
         if (_this.AnswerBox.name == _this.bArr[_this.count1]) //compares with answerbox and real answer
         {
             _this.noofAttempts++;
             _this.counterCelebrationSound.play();
-            
+
             //_this.Question_flag = 3;
 
             _this.numGroup.destroy();
@@ -1359,7 +1368,7 @@ Game.GMLA_01_G7level1.prototype =
         anim = starAnim.animations.add('star');
         _this.count1++;
 
-        _this.microConcepts = "Geometry";
+        _this.microConcepts = "GeometryG7";
         anim.play();
     },
 
@@ -1413,12 +1422,15 @@ Game.GMLA_01_G7level1.prototype =
         _this.skip.events.onInputDown.add(function () {
             _this.stopAudio();
 
-
             if (_this.demoVideo_1)
                 _this.demoVideo_1.stop(false);
             if (_this.videoWorld_1)
                 _this.videoWorld_1.destroy();
 
+            if (_this.hintBtn) {
+                _this.hintBtn.inputEnabled = true;
+                _this.hintBtn.input.useHandCursor = true;
+            }
 
             _this.game.paused = false;  //* restart the game
         });
@@ -1475,18 +1487,31 @@ Game.GMLA_01_G7level1.prototype =
 
         _this.demoVideo_1 = _this.add.video('GMLA1G7');
         _this.demoVideo_1.play(false);
-        _this.demoVideo_1.changeSource(window.baseUrl + "demoVideos/GMLA-01-G7.mp4");
+        _this.demoVideo_1.changeSource(window.baseUrl + "assets/demoVideos/GMLA-01-G7.mp4");
         _this.video_playing = 1;
         _this.videoWorld_1 = _this.demoVideo_1.addToWorld();
 
         _this.demoAudio1.play();
+
+        // _this.q1Timer = setTimeout(function ()    //* q1 js timer to play q1 after 5 seconds.
+        // {
+        //     console.log("inside q1sound.....")
+        //     clearTimeout(_this.q1Timer);         //* clear the time once its used.
+        //     _this.q1Sound.play();
+        // }, 6200);
+        if (_this.languageSelected === 'Odiya') {
+            var t1 = 8300;
+        }
+        else {
+            var t1 = 6200;
+        }
 
         _this.q1Timer = setTimeout(function ()    //* q1 js timer to play q1 after 5 seconds.
         {
             console.log("inside q1sound.....")
             clearTimeout(_this.q1Timer);         //* clear the time once its used.
             _this.q1Sound.play();
-        }, 6200);
+        }, t1);//6200
 
         _this.q2Timer = setTimeout(function ()    //* q2 js timer to play q2 after 2 min.
         {

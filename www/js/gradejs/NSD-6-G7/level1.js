@@ -9,7 +9,7 @@ Game.NSD_6_G7level1.prototype =
         this.Stararr = param;
         this.score = score;
         _this = this;
-        _this.languageSelected = document.getElementById("LANGUAGE").innerHTML;
+        _this.languageSelected = window.languageSelected;
 
         if (_this.languageSelected == null
             || _this.languageSelected == " "
@@ -19,37 +19,37 @@ Game.NSD_6_G7level1.prototype =
         else console.log("Language selected: " + _this.languageSelected);
         _this.clickSound = document.createElement('audio');
         _this.clickSoundsrc = document.createElement('source');
-        _this.clickSoundsrc.setAttribute("src", "sounds/ClickSound.mp3");
+        _this.clickSoundsrc.setAttribute("src", window.baseUrl + "sounds/ClickSound.mp3");
         _this.clickSound.appendChild(_this.clickSoundsrc);
 
         _this.successSound = document.createElement('audio');
         _this.successSoundsrc = document.createElement('source');
-        _this.successSoundsrc.setAttribute("src", "sounds/Success.mp3");
+        _this.successSoundsrc.setAttribute("src", window.baseUrl + "sounds/Success.mp3");
         _this.successSound.appendChild(_this.successSoundsrc);
 
         _this.celebrationSound = document.createElement('audio');
         _this.celebrationSoundsrc = document.createElement('source');
-        _this.celebrationSoundsrc.setAttribute("src", "sounds/celebration.mp3");
+        _this.celebrationSoundsrc.setAttribute("src", window.baseUrl + "sounds/celebration.mp3");
         _this.celebrationSound.appendChild(_this.celebrationSoundsrc);
 
         _this.counterCelebrationSound = document.createElement('audio');
         _this.counterCelebrationSoundsrc = document.createElement('source');
-        _this.counterCelebrationSoundsrc.setAttribute("src", "sounds/counter_celebration.mp3");
+        _this.counterCelebrationSoundsrc.setAttribute("src", window.baseUrl + "sounds/counter_celebration.mp3");
         _this.counterCelebrationSound.appendChild(_this.counterCelebrationSoundsrc);
 
         _this.wrongans = document.createElement('audio');
         _this.wronganssrc = document.createElement('source');
-        _this.wronganssrc.setAttribute("src", "sounds/wrongans.mp3");
+        _this.wronganssrc.setAttribute("src", window.baseUrl + "sounds/WrongCelebrationSound.mp3");
         _this.wrongans.appendChild(_this.wronganssrc);
 
         _this.framechange = document.createElement('audio');
         _this.framechangesrc = document.createElement('source');
-        _this.framechangesrc.setAttribute("src", "sounds/Frame_change_sound.mp3");
+        _this.framechangesrc.setAttribute("src", window.baseUrl + "sounds/Frame_change_sound.mp3");
         _this.framechange.appendChild(_this.framechangesrc);
 
         _this.snapSound = document.createElement('audio');
         _this.snapSoundsrc = document.createElement('source');
-        _this.snapSoundsrc.setAttribute("src", "sounds/snapSound.mp3");
+        _this.snapSoundsrc.setAttribute("src", window.baseUrl + "sounds/snapSound.mp3");
         _this.snapSound.appendChild(_this.snapSoundsrc);
 
         _this.Ask_Question1 = _this.createAudio("NSD_6_G7_a1");//Drag the whole number squares, decimal strips and square pieces to represent the dividend and the divisor.
@@ -63,6 +63,9 @@ Game.NSD_6_G7level1.prototype =
 
     create: function (game) {
 
+        _this.hintBtn = _this.add.sprite(670, 6, 'bulb');
+        _this.hintBtn.scale.setTo(0.5, 0.6);
+        _this.hintBtn.visible = false;
         //* show the demo video
         _this.time.events.add(1, function () {
 
@@ -176,9 +179,9 @@ Game.NSD_6_G7level1.prototype =
         _this.greenBoxArr = [];
         _this.orangeBoxArr = []
 
-        // BULB
-        _this.hintBtn = _this.add.sprite(670, 6, 'bulb');
-        _this.hintBtn.scale.setTo(0.5, 0.6);
+        //BULB
+        _this.hintBtn.bringToTop();
+        _this.hintBtn.visible = true;
         _this.hintBtn.smoothed = false;
         _this.hintBtnAnim = _this.hintBtn.animations.add('hint');
         _this.hintBtnAnim.play(15);
@@ -190,13 +193,13 @@ Game.NSD_6_G7level1.prototype =
 
         _this.hintBtn.events.onInputDown.add(function () {
             console.log("inside hintbutton function");
+            //* show the demo video
             _this.hintBtn.inputEnabled = false;
             _this.hintBtn.input.useHandCursor = false;
-            //* show the demo video
             _this.time.events.add(1, function () {
+                //console.log(_this.hintBtn.inputEnabled, "status of hintBtn");
                 _this.ViewDemoVideo();
             });
-
         });
 
         _this.generateStarsForTheScene(6);
@@ -211,7 +214,7 @@ Game.NSD_6_G7level1.prototype =
     createAudio: function (src) {
         audio = document.createElement('audio');
         audiosrc = document.createElement('source');
-        audiosrc.setAttribute("src", "questionSounds/NSD-6-G7/" + _this.languageSelected + "/" + src + ".mp3");
+        audiosrc.setAttribute("src", window.baseUrl + "questionSounds/NSD-6-G7/" + _this.languageSelected + "/" + src + ".mp3");
         audio.appendChild(audiosrc);
 
         return audio;
@@ -288,6 +291,10 @@ Game.NSD_6_G7level1.prototype =
 
         _this.Initial_randomization();
         _this.MakeSideBar();
+
+        _this.hintBtn.inputEnabled = true;
+        _this.hintBtn.input.useHandCursor = true;
+        _this.hint_flag = 1;
 
     },
     stopVoice: function () {
@@ -1878,35 +1885,35 @@ Game.NSD_6_G7level1.prototype =
         // DEMO AUDIOS
         _this.demoAudio1 = document.createElement('audio');
         _this.demoAudio1src = document.createElement('source');
-        _this.demoAudio1src.setAttribute("src", "questionSounds/NSD-6-G7/" + _this.languageSelected + "/NSD_6_G7_d1.mp3");
+        _this.demoAudio1src.setAttribute("src", window.baseUrl + "questionSounds/NSD-6-G7/" + _this.languageSelected + "/NSD_6_G7_d1.mp3");
         _this.demoAudio1.appendChild(_this.demoAudio1src);
 
         _this.demoAudio2 = document.createElement('audio');
         _this.demoAudio2src = document.createElement('source');
-        _this.demoAudio2src.setAttribute("src", "questionSounds/NSD-6-G7/" + _this.languageSelected + "/NSD_6_G7_d2.mp3");
+        _this.demoAudio2src.setAttribute("src", window.baseUrl + "questionSounds/NSD-6-G7/" + _this.languageSelected + "/NSD_6_G7_d2.mp3");
         _this.demoAudio2.appendChild(_this.demoAudio2src);
 
         _this.demoAudio3 = document.createElement('audio');
         _this.demoAudio3src = document.createElement('source');
-        _this.demoAudio3src.setAttribute("src", "questionSounds/NSD-6-G7/" + _this.languageSelected + "/NSD_6_G7_d3.mp3");
+        _this.demoAudio3src.setAttribute("src", window.baseUrl + "questionSounds/NSD-6-G7/" + _this.languageSelected + "/NSD_6_G7_d3.mp3");
         _this.demoAudio3.appendChild(_this.demoAudio3src);
 
         // QUESTION AUDIOS
         _this.q1Sound = document.createElement('audio');
         _this.q1Soundsrc = document.createElement('source');
-        _this.q1Soundsrc.setAttribute("src", "questionSounds/NSD-6-G7/" +
+        _this.q1Soundsrc.setAttribute("src", window.baseUrl + "questionSounds/NSD-6-G7/" +
             _this.languageSelected + "/NSD_6_G7_a1.mp3");
         _this.q1Sound.appendChild(_this.q1Soundsrc);
 
         _this.q2Sound = document.createElement('audio');
         _this.q2Soundsrc = document.createElement('source');
-        _this.q2Soundsrc.setAttribute("src", "questionSounds/NSD-6-G7/" +
+        _this.q2Soundsrc.setAttribute("src", window.baseUrl + "questionSounds/NSD-6-G7/" +
             _this.languageSelected + "/NSD_6_G7_a2.mp3");
         _this.q2Sound.appendChild(_this.q2Soundsrc);
 
         _this.q3Sound = document.createElement('audio');
         _this.q3Soundsrc = document.createElement('source');
-        _this.q3Soundsrc.setAttribute("src", "questionSounds/NSD-6-G7/" +
+        _this.q3Soundsrc.setAttribute("src", window.baseUrl + "questionSounds/NSD-6-G7/" +
             _this.languageSelected + "/NSD_6_G7_a3.mp3");
         _this.q3Sound.appendChild(_this.q3Soundsrc);
 
@@ -1927,6 +1934,10 @@ Game.NSD_6_G7level1.prototype =
             if (_this.videoWorld_1)
                 _this.videoWorld_1.destroy();
 
+            if (_this.hintBtn) {
+                _this.hintBtn.inputEnabled = true;
+                _this.hintBtn.input.useHandCursor = true;
+            }
 
             _this.game.paused = false;  //* restart the game
         });
@@ -2000,7 +2011,7 @@ Game.NSD_6_G7level1.prototype =
 
         _this.demoVideo_1 = _this.add.video('NSD6G7');
         _this.demoVideo_1.play(false);
-        _this.demoVideo_1.changeSource("demoVideos/Nsd-6-G7.mp4");
+        _this.demoVideo_1.changeSource(window.baseUrl + "assets/demoVideos/Nsd-6-G7.mp4");
         _this.video_playing = 1;
         _this.videoWorld_1 = _this.demoVideo_1.addToWorld();
 
@@ -2041,8 +2052,12 @@ Game.NSD_6_G7level1.prototype =
             _this.stopAudio();
             _this.demoVideo_1.stop(false);
             _this.videoWorld_1.destroy();
-            _this.game.paused = false;
+            if (_this.hintBtn) {
+                _this.hintBtn.inputEnabled = true;
+                _this.hintBtn.input.useHandCursor = true;
+            }
 
+            _this.game.paused = false;
 
         });
     }

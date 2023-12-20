@@ -7,7 +7,7 @@ Game.preloader_GMLA_01_G7.prototype = {
         preload: function () { 
  
                 // this.load.video('GMLA_01_G7', 'demoVideos/GMLA_01_G7.mp4');   //* include demo video of GMLA-01-G7 game
-                this.load.video('GMLA1G7', window.baseUrl +'demoVideos/GMLA-01-G7.mp4');   //* include demo video of GMLA-01-G7 game.
+                this.load.video('GMLA1G7', window.baseUrl +'assets/demoVideos/GMLA-01-G7.mp4');   //* include demo video of GMLA-01-G7 game.
 
                 this.load.atlas('bulb', window.baseUrl + 'assets/commonAssets/bulb.png', null, GMLA_01_G7_JSON.bulbBtnJson);
                 this.load.image('skipArrow', window.baseUrl + 'assets/commonAssets/skipArrow.png');

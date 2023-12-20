@@ -8,7 +8,7 @@ Game.GMLA_07_G7level1.prototype =
 
         this.Stararr = param;
         this.score = score;
-        _this.languageSelected = document.getElementById("LANGUAGE").innerHTML;
+        _this.languageSelected = window.languageSelected;
 
         if (_this.languageSelected == null
             || _this.languageSelected == " "
@@ -33,7 +33,7 @@ Game.GMLA_07_G7level1.prototype =
 
         _this.wrongans = document.createElement('audio');
         _this.wronganssrc = document.createElement('source');
-        _this.wronganssrc.setAttribute("src", window.baseUrl + "sounds/wrongans.mp3");
+        _this.wronganssrc.setAttribute("src", window.baseUrl + "sounds/WrongCelebrationSound.mp3");
         _this.wrongans.appendChild(_this.wronganssrc);
 
         _this.wrongSound = document.createElement('audio');
@@ -3423,7 +3423,7 @@ Game.GMLA_07_G7level1.prototype =
         anim = starAnim.animations.add('star');
         _this.numberOfQuestions++;
 
-        _this.microConcepts = "Geometry";
+        _this.microConcepts = "GeometryG7";
         anim.play();
         _this.count++;
 

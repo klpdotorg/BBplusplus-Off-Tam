@@ -9,7 +9,7 @@ Game.GMLA_02_G7level1.prototype =
         this.Stararr = param;
         this.score = score;
         _this = this;
-        _this.languageSelected = document.getElementById("LANGUAGE").innerHTML;
+        _this.languageSelected = window.languageSelected;
 
         if (_this.languageSelected == null
             || _this.languageSelected == " "
@@ -3245,6 +3245,9 @@ Game.GMLA_02_G7level1.prototype =
     },
 
     starActions: function (target) {
+        telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
+
+        _this.microConcepts = "GeometryG7";
         console.log("get a star")
         starAnim = _this.starsGroup.getChildAt(_this.count1);
         starAnim.smoothed = false;

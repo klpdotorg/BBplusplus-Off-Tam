@@ -1556,7 +1556,7 @@ Game.INT_DI3_G7level1.prototype =
             console.log("inside q5sound.....")
             clearTimeout(_this.q5Timer);         //* clear the time once its used.
             _this.q5Sound.play();
-        }, 56000);
+        }, 56000);//56000
 
         _this.demoVideo_1.onComplete.add(function () {
 

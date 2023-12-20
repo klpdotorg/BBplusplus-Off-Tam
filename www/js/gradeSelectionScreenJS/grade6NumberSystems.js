@@ -83,14 +83,14 @@ Game.grade6NumberSystems.prototype = {
 		this.gameModeShareBtn = game.add.image(920, 18, 'shareIcon');
 		this.gameModeShareBtn.anchor.setTo(0.5);
 		this.gameModeShareBtn.scale.setTo(0.75);
-		this.gameModeShareBtn.inputEnabled = true;
-		this.gameModeShareBtn.input.priorityID = 1;
-		this.gameModeShareBtn.input.useHandCursor = true;
-		this.gameModeShareBtn.events.onInputDown.add(function () {
-			this.clickSound = this.add.audio('ClickSound');
-			this.clickSound.play();
-			nativeApp.ShareApp();
-		}, this);
+		// this.gameModeShareBtn.inputEnabled = true;
+		// this.gameModeShareBtn.input.priorityID = 1;
+		// this.gameModeShareBtn.input.useHandCursor = true;
+		// this.gameModeShareBtn.events.onInputDown.add(function () {
+		// 	this.clickSound = this.add.audio('ClickSound');
+		// 	this.clickSound.play();
+		// 	nativeApp.ShareApp();
+		// }, this);
 
 
 		_this.grade6NumbersGroup = _this.add.group();

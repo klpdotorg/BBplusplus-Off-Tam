@@ -6,7 +6,7 @@ var chime, clockTick;
 Game.preloader_NSD_6_G7.prototype = {
         preload: function () {
 
-                this.load.video('NSD6G7', 'demoVideos/Nsd-6-G7.mp4');   //* include demo video of nsd game.
+                this.load.video('NSD6G7',  window.baseUrl +'assets/demoVideos/Nsd-6-G7.mp4');   //* include demo video of nsd game.
 
                 this.load.atlas('bulb', window.baseUrl +'assets/commonAssets/bulb.png', null, NSD_6_G7_JSON.bulbBtnJson);
                 this.load.image('skipArrow', window.baseUrl +'assets/commonAssets/skipArrow.png');

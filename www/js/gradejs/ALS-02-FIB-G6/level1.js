@@ -2798,8 +2798,6 @@ Game.ALS_02_FIB_G6level1.prototype =
                 _this.game.paused = false;
 
                 console.log("demovideo 2 completed......!!!1");
-
-
             });
 
         });

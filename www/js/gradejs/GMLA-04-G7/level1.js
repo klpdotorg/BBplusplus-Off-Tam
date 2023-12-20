@@ -9,7 +9,7 @@ Game.GMLA_04_G7level1.prototype =
         this.Stararr = param;
         this.score = score;
         _this = this;
-        _this.languageSelected = document.getElementById("LANGUAGE").innerHTML;
+        _this.languageSelected = window.languageSelected;
 
         if (_this.languageSelected == null
             || _this.languageSelected == " "
@@ -32,10 +32,10 @@ Game.GMLA_04_G7level1.prototype =
         _this.counterCelebrationSoundsrc.setAttribute("src", window.baseUrl + "sounds/counter_celebration.mp3");
         _this.counterCelebrationSound.appendChild(_this.counterCelebrationSoundsrc);
 
-        _this.wrongans = document.createElement('audio');
-        _this.wronganssrc = document.createElement('source');
-        _this.wronganssrc.setAttribute("src", window.baseUrl + "sounds/wrongans.mp3");
-        _this.wrongans.appendChild(_this.wronganssrc);
+        // _this.wrongans = document.createElement('audio');
+        // _this.wronganssrc = document.createElement('source');
+        // _this.wronganssrc.setAttribute("src", window.baseUrl + "sounds/WrongCelebrationSound.mp3");
+        // _this.wrongans.appendChild(_this.wronganssrc);
 
         _this.wrongSound = document.createElement('audio');
         _this.wrongSoundsrc = document.createElement('source');
@@ -2237,7 +2237,7 @@ Game.GMLA_04_G7level1.prototype =
         starAnim = _this.starsGroup.getChildAt(_this.numberOfQuestions);
         starAnim.smoothed = false;
         anim = starAnim.animations.add('star');
-        _this.microConcepts = "Geometry";
+        _this.microConcepts = "GeometryG7";
         _this.numberOfQuestions++;
         anim.play();
     },
@@ -2510,6 +2510,22 @@ Game.GMLA_04_G7level1.prototype =
     },
 
     playQuestion1: function () {
+
+        // if (_this.languageSelected === 'Marathi') {
+        //     var timer1 = 13000;
+        //     var timer2 = 27000;
+        // } else {
+        //     var timer1 = 7800;
+        //     var timer2 = 13000;
+        // }
+        if(_this.languageSelected === 'Marathi' || _this.languageSelected === 'Odiya'){
+            var  timer1 = 13000;
+            var  timer2 = 27000;
+          }else{
+              var  timer1 = 7800;
+              var  timer2 = 13000;
+          }
+
         _this.q1Sound.play();
         // _this.Ask_Question13.play();
         _this.Question_flag = 13;
@@ -2528,7 +2544,7 @@ Game.GMLA_04_G7level1.prototype =
             clearTimeout(_this.q3Timer);
             _this.q3Sound.play();
             _this.Question_flag = 15;
-        }, 7800);
+        }, timer1);
 
         _this.q4Timer = setTimeout(function ()    //* demoAudio1 js timer to play demoAudio1Timer after 4 seconds.
         {
@@ -2536,7 +2552,7 @@ Game.GMLA_04_G7level1.prototype =
             clearTimeout(_this.q4Timer);
             _this.q4Sound.play();
             _this.Question_flag = 16;
-        }, 13000);
+        }, timer2);
 
 
     },

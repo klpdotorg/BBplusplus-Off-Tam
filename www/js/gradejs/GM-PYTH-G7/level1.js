@@ -5,10 +5,10 @@ Game.GMPYTH_G7level1.prototype =
     init: function (param, score) {
         _this = this;
 
-        this.Stararr = param;
+        this.Stararr = param; 
         this.score = score;
         _this = this;
-        _this.languageSelected = document.getElementById("LANGUAGE").innerHTML;
+        _this.languageSelected = window.languageSelected;
 
         if (_this.languageSelected == null
             || _this.languageSelected == " "
@@ -18,32 +18,32 @@ Game.GMPYTH_G7level1.prototype =
         else console.log("Language selected: " + _this.languageSelected);
         _this.clickSound = document.createElement('audio');
         _this.clickSoundsrc = document.createElement('source');
-        _this.clickSoundsrc.setAttribute("src", "sounds/ClickSound.mp3");
+        _this.clickSoundsrc.setAttribute("src", window.baseUrl + "sounds/ClickSound.mp3");
         _this.clickSound.appendChild(_this.clickSoundsrc);
 
         _this.celebrationSound = document.createElement('audio');
         _this.celebrationSoundsrc = document.createElement('source');
-        _this.celebrationSoundsrc.setAttribute("src", "sounds/celebration.mp3");
+        _this.celebrationSoundsrc.setAttribute("src", window.baseUrl + "sounds/celebration.mp3");
         _this.celebrationSound.appendChild(_this.celebrationSoundsrc);
 
         _this.counterCelebrationSound = document.createElement('audio');
         _this.counterCelebrationSoundsrc = document.createElement('source');
-        _this.counterCelebrationSoundsrc.setAttribute("src", "sounds/counter_celebration.mp3");
+        _this.counterCelebrationSoundsrc.setAttribute("src", window.baseUrl + "sounds/counter_celebration.mp3");
         _this.counterCelebrationSound.appendChild(_this.counterCelebrationSoundsrc);
 
         _this.wrongSound = document.createElement('audio');
         _this.wrongSoundsrc = document.createElement('source');
-        _this.wrongSoundsrc.setAttribute("src", "sounds/WrongCelebrationSound.mp3");
+        _this.wrongSoundsrc.setAttribute("src", window.baseUrl + "sounds/WrongCelebrationSound.mp3");
         _this.wrongSound.appendChild(_this.wrongSoundsrc);
 
         _this.SmallReward = document.createElement('audio');
         _this.SmallRewardsrc = document.createElement('source');
-        _this.SmallRewardsrc.setAttribute("src", "sounds/Small Reward.mp3");
+        _this.SmallRewardsrc.setAttribute("src", window.baseUrl + "sounds/Small Reward.mp3");
         _this.SmallReward.appendChild(_this.SmallRewardsrc);
 
         _this.TapSound = document.createElement('audio');
         _this.Tapsrc = document.createElement('source');
-        _this.Tapsrc.setAttribute("src", "sounds/Tap.mp3");
+        _this.Tapsrc.setAttribute("src", window.baseUrl + "sounds/Tap.mp3");
         _this.TapSound.appendChild(_this.Tapsrc);
 
         _this.Ask_Question1 = _this.createAudio("GM_PYTH_G7_a3");//Tap and Select any of the square
@@ -53,10 +53,17 @@ Game.GMPYTH_G7level1.prototype =
         _this.Ask_Question5 = _this.createAudio("GM_PYTH_G7_a7");//Find the Area of a shape.
         _this.Ask_Question6 = _this.createAudio("GM_PYTH_G7_a6");//Select the square
         _this.Ask_Question7 = _this.createAudio("GM_PYTH_G7_a2");//These sides cannot form a right angle triangle
+
+        telInitializer.gameIdInit("GM_PYTH_G7", gradeSelected);// first Tele call
+        console.log(gameID, "gameID...");
     },
 
     create: function (game) {
 
+        
+        _this.hintBtn = _this.add.sprite(670, 6, 'bulb');
+        _this.hintBtn.scale.setTo(0.5, 0.6);
+        _this.hintBtn.visible = false;
         //* show the demo video
         _this.time.events.add(1, function () {
 
@@ -78,7 +85,14 @@ Game.GMPYTH_G7level1.prototype =
     },
 
     gameCreate: function (game) {
-        _this.AnsTimerCount = 0;
+        //*add these  variables
+        _this.hint_flag = 0;
+        _this.noofAttempts = 0;//total attempt to answer q question
+        _this.AnsTimerCount = 0;//total time
+        _this.sceneCount = 0;//no of screen
+        _this.questionid = null;//always 1
+
+    //    _this.AnsTimerCount = 0;
         _this.count1 = 0;
         _this.trackCount = 0;
         _this.speakerbtn;
@@ -137,7 +151,7 @@ Game.GMPYTH_G7level1.prototype =
             _this.backbtn.events.onInputDown.removeAll();
 
             _this.time.events.add(50, function () {
-                _this.state.start('Backbutton');
+                _this.state.start('grade7Geometry',true,false);
             });
         });
 
@@ -182,9 +196,31 @@ Game.GMPYTH_G7level1.prototype =
         _this.timeDisplay.fontSize = 20;
         _this.timeDisplay.fill = '#ADFF2F';
 
-        //bulb 
-        _this.hintBtn = _this.add.sprite(670, 6, 'bulb');
-        _this.hintBtn.scale.setTo(0.5, 0.6);
+        // //bulb 
+        // _this.hintBtn = _this.add.sprite(670, 6, 'bulb');
+        // _this.hintBtn.scale.setTo(0.5, 0.6);
+        // _this.hintBtn.smoothed = false;
+        // _this.hintBtnAnim = _this.hintBtn.animations.add('hint');
+        // _this.hintBtnAnim.play(15);
+        // _this.hintBtnAnim.onComplete.add(function () {
+        //     _this.hintBtnAnim.play(15);
+        // }, _this);
+        // _this.hintBtn.inputEnabled = true;
+        // _this.hintBtn.input.useHandCursor = true;
+
+        // _this.hintBtn.events.onInputDown.add(function () {
+        //     console.log("inside hintbutton function");
+        //     //* show the demo video
+        //     _this.hintBtn.inputEnabled = false;
+        //     _this.hintBtn.input.useHandCursor = false;
+        //     _this.time.events.add(1, function () {
+        //         _this.ViewDemoVideo();
+        //     });
+
+        // });
+        //bulb
+        _this.hintBtn.bringToTop();
+        _this.hintBtn.visible = true;
         _this.hintBtn.smoothed = false;
         _this.hintBtnAnim = _this.hintBtn.animations.add('hint');
         _this.hintBtnAnim.play(15);
@@ -200,6 +236,7 @@ Game.GMPYTH_G7level1.prototype =
             _this.hintBtn.inputEnabled = false;
             _this.hintBtn.input.useHandCursor = false;
             _this.time.events.add(1, function () {
+                console.log(_this.hintBtn.inputEnabled, "status of hintBtn");
                 _this.ViewDemoVideo();
             });
 
@@ -218,7 +255,7 @@ Game.GMPYTH_G7level1.prototype =
     createAudio: function (src) {
         audio = document.createElement('audio');
         audiosrc = document.createElement('source');
-        audiosrc.setAttribute("src", "questionSounds/GM-PYTH-G7/" + _this.languageSelected + "/" + src + ".mp3");
+        audiosrc.setAttribute("src", window.baseUrl + "questionSounds/GM-PYTH-G7/" + _this.languageSelected + "/" + src + ".mp3");
         audio.appendChild(audiosrc);
         // audio.play();
         return audio;
@@ -318,6 +355,11 @@ Game.GMPYTH_G7level1.prototype =
         _this.Initial_randomizing();
         _this.displayGridView();
         //_this.displayNextShapes();
+
+        _this.hintBtn.inputEnabled = true;
+        _this.hintBtn.input.useHandCursor = true;
+        _this.hint_flag = 1;
+        _this.questionid =1;
     },
 
     createSemiCircle: function () {
@@ -1440,6 +1482,7 @@ Game.GMPYTH_G7level1.prototype =
 
             // _this.thumbsDown.inputEnabled = false;
             _this.thumbsDown.frame = 1;
+            _this.noofAttempts ++;
             _this.wrongSound.play();
             _this.time.events.add(1000, function () {
                 _this.thumbsDown.frame = 0;
@@ -1823,6 +1866,9 @@ Game.GMPYTH_G7level1.prototype =
     },
 
     displayNextShapes: function () {
+        _this.sceneCount ++;
+        _this.AnsTimerCount = 0;
+        _this.noofAttempts = 0;
         // //*Here decide which shape you want to display 
         // //* you have semi circle,hexagon and equilateral triangle
         // //*display panel, one button and first shape
@@ -2033,6 +2079,7 @@ Game.GMPYTH_G7level1.prototype =
                         //* Anikmation for Semi Circle
                         _this.createSquareImage();
                     } else {
+                        _this.noofAttempts ++;
                         _this.wrongSound.play();
                         _this.time.events.add(1000, function () {
                             _this.thumbsUp.frame = 0;
@@ -2066,6 +2113,7 @@ Game.GMPYTH_G7level1.prototype =
                         });
 
                     } else {
+                        _this.noofAttempts ++;
                         // _this.thumbsDown.frame = 1;
                         _this.wrongSound.play();
                         _this.time.events.add(1000, function () {
@@ -2265,6 +2313,7 @@ Game.GMPYTH_G7level1.prototype =
                         //* Animation for Equilateral
                         _this.createEquilateralImage(_this.roundedNumber, _this.roundedNumber1, _this.thirdEQArea);
                     } else {
+                        _this.noofAttempts ++;
                         _this.wrongSound.play();
                         _this.time.events.add(1000, function () {
                             _this.thumbsUp.frame = 0;
@@ -2297,6 +2346,7 @@ Game.GMPYTH_G7level1.prototype =
                             })
                         });
                     } else {
+                        _this.noofAttempts ++;
                         // _this.thumbsDown.frame = 1;
                         _this.wrongSound.play();
                         _this.time.events.add(1000, function () {
@@ -2521,6 +2571,7 @@ Game.GMPYTH_G7level1.prototype =
                         });
                         _this.createSemiCircle(_this.roundedNumber, _this.roundedNumber1, _this.thirdSemiArea);
                     } else {
+                        _this.noofAttempts ++;
                         _this.wrongSound.play();
                         _this.time.events.add(1000, function () {
                             _this.thumbsUp.frame = 0;
@@ -2554,6 +2605,7 @@ Game.GMPYTH_G7level1.prototype =
                             })
                         });
                     } else {
+                        _this.noofAttempts ++;
                         // _this.thumbsDown.frame = 1;
                         _this.wrongSound.play();
                         _this.time.events.add(1000, function () {
@@ -2745,6 +2797,7 @@ Game.GMPYTH_G7level1.prototype =
                         //* Animation for hexagon
                         _this.createHexagonImage(_this.roundedNumber, _this.roundedNumber1, _this.thirdHexArea);
                     } else {
+                        _this.noofAttempts ++;
                         _this.wrongSound.play();
                         _this.time.events.add(1000, function () {
                             _this.thumbsUp.frame = 0;
@@ -2778,6 +2831,7 @@ Game.GMPYTH_G7level1.prototype =
                             })
                         });
                     } else {
+                        _this.noofAttempts ++;
                         _this.wrongSound.play();
                         _this.time.events.add(1000, function () {
                             _this.thumbsDown.frame = 0;
@@ -2878,6 +2932,7 @@ Game.GMPYTH_G7level1.prototype =
                     _this.Question_flag = 2;
 
                 } else {
+                    _this.noofAttempts ++;
                     _this.wrongSound.play();
                     _this.eraseScreen();
                 }
@@ -2954,6 +3009,7 @@ Game.GMPYTH_G7level1.prototype =
                     })
 
                 } else {
+                    _this.noofAttempts ++;
                     _this.wrongSound.play();
                     _this.eraseScreen();
                 }
@@ -2985,6 +3041,7 @@ Game.GMPYTH_G7level1.prototype =
                     _this.Question_flag = 2;
 
                 } else {
+                    _this.noofAttempts ++;
                     _this.wrongSound.play();
                     _this.eraseScreen();
                 }
@@ -3055,6 +3112,7 @@ Game.GMPYTH_G7level1.prototype =
                     })
 
                 } else {
+                    _this.noofAttempts ++;
                     _this.wrongSound.play();
                     _this.eraseScreen();
                 }
@@ -3085,6 +3143,7 @@ Game.GMPYTH_G7level1.prototype =
                     })
                     _this.Question_flag = 2;
                 } else {
+                    _this.noofAttempts ++;
                     _this.wrongSound.play();
                     _this.eraseScreen();
                 }
@@ -3157,6 +3216,7 @@ Game.GMPYTH_G7level1.prototype =
                         }
                     })
                 } else {
+                    _this.noofAttempts ++;
                     _this.wrongSound.play();
                     _this.eraseScreen();
                 }
@@ -3176,7 +3236,7 @@ Game.GMPYTH_G7level1.prototype =
             _this.timer1.stop();
             _this.timer1 = null;
             _this.time.events.add(1000, function () {
-                _this.state.start('score');
+                _this.state.start('score', true, false,gameID, _this.microConcepts);
             });
         }
     },
@@ -3272,6 +3332,11 @@ Game.GMPYTH_G7level1.prototype =
     },
 
     starActions: function (target) {
+        _this.noofAttempts ++;
+
+        telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
+
+        _this.microConcepts = "GeometryG7";
         console.log("get a star")
         starAnim = _this.starsGroup.getChildAt(_this.count1);
         starAnim.smoothed = false;
@@ -3449,32 +3514,32 @@ Game.GMPYTH_G7level1.prototype =
         //*  ‘S ‘ represents the side of a square
         _this.demoAudio1 = document.createElement('audio');
         _this.demoAudio1src = document.createElement('source');
-        _this.demoAudio1src.setAttribute("src", "questionSounds/GM-PYTH-G7/" + _this.languageSelected + "/GM_PYTH_G7_d1.mp3");
+        _this.demoAudio1src.setAttribute("src", window.baseUrl +  "questionSounds/GM-PYTH-G7/" + _this.languageSelected + "/GM_PYTH_G7_d1.mp3");
         _this.demoAudio1.appendChild(_this.demoAudio1src);
 
         //* ‘P ‘ represents perimeter
         _this.demoAudio2 = document.createElement('audio');
         _this.demoAudio2src = document.createElement('source');
-        _this.demoAudio2src.setAttribute("src", "questionSounds/GM-PYTH-G7/" + _this.languageSelected + "/GM_PYTH_G7_d2.mp3");
+        _this.demoAudio2src.setAttribute("src", window.baseUrl + "questionSounds/GM-PYTH-G7/" + _this.languageSelected + "/GM_PYTH_G7_d2.mp3");
         _this.demoAudio2.appendChild(_this.demoAudio2src);
 
         //*  ‘L ‘ represents the Length and  ‘B’ represents the breadth  of a rectangle
         _this.demoAudio3 = document.createElement('audio');
         _this.demoAudio3src = document.createElement('source');
-        _this.demoAudio3src.setAttribute("src", "questionSounds/GM-PYTH-G7/" + _this.languageSelected + "/GM_PYTH_G7_d3.mp3");
+        _this.demoAudio3src.setAttribute("src", window.baseUrl +  "questionSounds/GM-PYTH-G7/" + _this.languageSelected + "/GM_PYTH_G7_d3.mp3");
         _this.demoAudio3.appendChild(_this.demoAudio3src);
 
         //* verify pythagoras theorem , Is a2 +b2 equal to  c2 ? Can the sides form a right angle triangle?
         _this.q1Sound = document.createElement('audio');
         _this.q1Soundsrc = document.createElement('source');
-        _this.q1Soundsrc.setAttribute("src", "questionSounds/GM-PYTH-G7/" +
+        _this.q1Soundsrc.setAttribute("src", window.baseUrl + "questionSounds/GM-PYTH-G7/" +
             _this.languageSelected + "/GM_PYTH_G7_a1.mp3");
         _this.q1Sound.appendChild(_this.q1Soundsrc);
 
         //* These sides cannot form a right angle triangle
         _this.q2Sound = document.createElement('audio');
         _this.q2Soundsrc = document.createElement('source');
-        _this.q2Soundsrc.setAttribute("src", "questionSounds/GM-PYTH-G7/" +
+        _this.q2Soundsrc.setAttribute("src", window.baseUrl +  "questionSounds/GM-PYTH-G7/" +
             _this.languageSelected + "/GM_PYTH_G7_a2.mp3");
         _this.q2Sound.appendChild(_this.q2Soundsrc);
 
@@ -3512,7 +3577,7 @@ Game.GMPYTH_G7level1.prototype =
         if (_this.demoAudio2Timer) clearTimeout(_this.demoAudio2Timer);
         if (_this.q1Timer) clearTimeout(_this.q1Timer);
         if (_this.q2Timer) clearTimeout(_this.q2Timer);
-      
+
 
         if (_this.demoAudio1) {
             console.log("removing the demo audio1");
@@ -3578,7 +3643,7 @@ Game.GMPYTH_G7level1.prototype =
     showDemoVideo: function () {
         _this.demoVideo_1 = _this.add.video('GMPYTHG71');
         _this.demoVideo_1.play(false);
-        _this.demoVideo_1.changeSource("demoVideos/Gm-Pyth-G7-1.mp4");
+        _this.demoVideo_1.changeSource(window.baseUrl + "assets/demoVideos/Gm-Pyth-G7-1.mp4");
         _this.video_playing = 1;
         _this.videoWorld_1 = _this.demoVideo_1.addToWorld();
 
@@ -3611,7 +3676,7 @@ Game.GMPYTH_G7level1.prototype =
             console.log("audio2 ended - pause video1");
             _this.demoVideo_2 = _this.add.video('GMPYTHG72');
             _this.demoVideo_2.play(false);
-            _this.demoVideo_2.changeSource("demoVideos/Gm-Pyth-G7-2.mp4");  //* phaser needs this.to run in mobile
+            _this.demoVideo_2.changeSource(window.baseUrl + "assets/demoVideos/Gm-Pyth-G7-2.mp4");  //* phaser needs this.to run in mobile
             _this.video_playing = 2;
             _this.videoWorld_2 = _this.demoVideo_2.addToWorld();
 

@@ -78,7 +78,7 @@ Game.GMSS_03_G7level1.prototype =
         _this.sceneCount = 0;//no of screen
         _this.questionid = null;//always 1
 
-        _this.AnsTimerCount = 0;
+        //_this.AnsTimerCount = 0;
         _this.numberOfQuestions = 0;
         _this.speakerbtn;
         _this.background;
@@ -256,6 +256,7 @@ Game.GMSS_03_G7level1.prototype =
                 _this.seconds = _this.counterForTimer;
         }
         _this.timeDisplay.setText(_this.minutes + ':' + _this.seconds);
+        //timer.setText(minutes + ':'+ seconds );
     },
     generateStarsForTheScene: function (count) {
         _this.starsGroup = _this.add.group();
@@ -1918,6 +1919,7 @@ Game.GMSS_03_G7level1.prototype =
         _this.noofAttempts++;
 
         telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
+
         _this.microConcepts = "GeometryG7";
         _this.celebrationSound.play();
         _this.starActions();
@@ -1931,7 +1933,9 @@ Game.GMSS_03_G7level1.prototype =
             }
             else {
                 _this.time.events.add(800, () => {
-                    _this.getQuestion();
+                    _this.speakerbtn.inputEnabled = true;
+                    _this.InitialScreen();
+                   // _this.getQuestion();
                 });
             }
         });

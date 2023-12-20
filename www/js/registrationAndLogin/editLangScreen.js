@@ -48,7 +48,7 @@ Game.editLangScreen.prototype={
 
 	    document.addEventListener('backbutton', _this.goback, false);
 
-		var titleTxt = game.add.text(game.world.centerX-80,45,"Building Blocks++");
+		var titleTxt = game.add.text(game.world.centerX-10, 45, "Building Blocks 6-8 by Akshara");
 		titleTxt.x = Math.round(titleTxt.x);
 			titleTxt.anchor.setTo(0.5);
 			titleTxt.align = 'center';

@@ -32,9 +32,6 @@ Game.preloader_ALS_01_MCQ_G6.prototype={
         this.load.atlas('bluefishanim', window.baseUrl+ 'assets/gradeAssets/ALS-01-MCQ-G6/Blue fish anim.png',null,ALS_01_MCQ_G6_JSON.bluefishanim);
         this.load.atlas('orangefishanim', window.baseUrl+ 'assets/gradeAssets/ALS-01-MCQ-G6/Orenge  fish anim.png',null,ALS_01_MCQ_G6_JSON.orangefishanim);
 
-
-
-
         this.load.atlas('Grass_1', window.baseUrl+ 'assets/gradeAssets/ALS-01-MCQ-G6/grass_1.png',null,ALS_01_MCQ_G6_JSON.GrassOneJson);
         this.load.image('Plant', window.baseUrl+ 'assets/gradeAssets/ALS-01-MCQ-G6/plant.png')
         this.load.atlas('Grass_2', window.baseUrl+ 'assets/gradeAssets/ALS-01-MCQ-G6/grass_2.png',null,ALS_01_MCQ_G6_JSON.GrassTwoJson);
@@ -54,6 +51,5 @@ Game.preloader_ALS_01_MCQ_G6.prototype={
 	create:function(){
 		
 		this.state.start('ALS_01_MCQ_G6level1');
-        
     },
 }
