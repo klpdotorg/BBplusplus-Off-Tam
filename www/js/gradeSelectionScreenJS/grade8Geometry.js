@@ -412,100 +412,6 @@ Game.grade8Geometry.prototype={
 			},_this);
 		},_this);
 
-		// _this.GMS_4_Screen = _this.add.sprite(700,120,'GMR_1_Screen');
-		// _this.bgGraphicFr4 = this.add.graphics(810,175);
-		// _this.bgGraphicFr4.lineStyle(0, 0xFFFFFF, 0.8);
-		// _this.bgGraphicFr4.beginFill(0x493A19, 1);
-		// _this.bgGraphicFr4.drawRoundedRect(0,0,30,30,10);
-		// _this.bgGraphicFr4.boundsPadding = 0;
-		// _this.GMS_4_ScreenTxt = this.add.text(825, 192, ' \n '+window.selctedLang.GMR_1_Screen+' \n ');
-		// _this.GMS_4_ScreenTxt.anchor.setTo(0.5);
-		// _this.GMS_4_ScreenTxt.align = 'center';
-		// _this.GMS_4_ScreenTxt.font = 'gradefont';
-		// _this.GMS_4_ScreenTxt.fontSize = 20;
-		// _this.GMS_4_ScreenTxt.fontWeight = 'normal';
-		// _this.GMS_4_ScreenTxt.fill = 'white';
-		// _this.GMS_4_ScreenTxt.wordWrap = true;
-		// _this.GMS_4_ScreenTxt.wordWrapWidth = 500;
-		// _this.GMS_4_Screen.inputEnabled = true;
-		// _this.GMS_4_Screen.name = "GMR-4";
-		// _this.GMS_4_Screen.input.useHandCursor = true;
-		// _this.GMS_4_Screen.events.onInputDown.add(function(target){
-		// 	_this.time.events.add(300, function(){
-		// 		if(_this.tap)
-		// 		{
-		// 			_this.time.events.removeAll();
-		// 			target.events.onInputDown.removeAll();
-		// 			_this.clickSound = _this.add.audio('ClickSound');
-		// 			_this.clickSound.play();
-		// 			_this.state.start('preloader_GMR_01_G6',true,false);
-		// 		}
-		// 	},_this);
-		// },_this);
-
-		// _this.GMCR_1_Screen = _this.add.sprite(100,320,'GMCR_1_Screen');
-		// _this.bgGraphicNum5 = this.add.graphics(210,375);
-		// _this.bgGraphicNum5.lineStyle(0, 0xFFFFFF, 0.8);
-		// _this.bgGraphicNum5.beginFill(0x493A19, 1);
-		// _this.bgGraphicNum5.drawRoundedRect(0,0,30,30,10);
-		// _this.bgGraphicNum5.boundsPadding = 0;
-		// _this.GMCR_1_ScreenTxt = this.add.text(225, 392, ' \n '+window.selctedLang.GMCR_1_Screen+' \n ');
-		// _this.GMCR_1_ScreenTxt.anchor.setTo(0.5);
-		// _this.GMCR_1_ScreenTxt.align = 'center';
-		// _this.GMCR_1_ScreenTxt.font = 'gradefont';
-		// _this.GMCR_1_ScreenTxt.fontSize = 20;
-		// _this.GMCR_1_ScreenTxt.fontWeight = 'normal';
-		// _this.GMCR_1_ScreenTxt.fill = 'white';
-		// _this.GMCR_1_ScreenTxt.wordWrap = true;
-		// _this.GMCR_1_ScreenTxt.wordWrapWidth = 500;
-		// _this.GMCR_1_Screen.inputEnabled = true;
-		// _this.GMCR_1_Screen.input.useHandCursor = true;
-		// _this.GMCR_1_Screen.name = "GMCR-1";
-		// _this.GMCR_1_Screen.events.onInputDown.add(function(target){
-		// 	_this.time.events.add(300, function(){
-		// 		if(_this.tap)
-		// 		{
-		// 			_this.time.events.removeAll();
-		// 			target.events.onInputDown.removeAll();
-		// 			_this.clickSound = _this.add.audio('ClickSound');
-		// 			_this.clickSound.play();
-		// 			_this.state.start('preloader_gmcr_01',true,false);
-		// 		}
-		// 	},_this);
-		// },_this);
-
-		// _this.GMAN_1_Screen = _this.add.sprite(300,320,'GMAN_1_Screen');
-		// _this.bgGraphicNum6 = this.add.graphics(410,375);
-		// _this.bgGraphicNum6.lineStyle(0, 0xFFFFFF, 0.8);
-		// _this.bgGraphicNum6.beginFill(0x493A19, 1);
-		// _this.bgGraphicNum6.drawRoundedRect(0,0,30,30,10);
-		// _this.bgGraphicNum6.boundsPadding = 0;
-		// _this.GMAN_1_ScreenTxt = this.add.text(425, 392, ' \n '+window.selctedLang.GMAN_1_Screen +' \n ');
-		// _this.GMAN_1_ScreenTxt.anchor.setTo(0.5);
-		// _this.GMAN_1_ScreenTxt.align = 'center';
-		// _this.GMAN_1_ScreenTxt.font = 'gradefont';
-		// _this.GMAN_1_ScreenTxt.fontSize = 20;
-		// _this.GMAN_1_ScreenTxt.fontWeight = 'normal';
-		// _this.GMAN_1_ScreenTxt.fill = 'white';
-		// _this.GMAN_1_ScreenTxt.wordWrap = true;
-		// _this.GMAN_1_ScreenTxt.wordWrapWidth = 500;
-		// _this.GMAN_1_Screen .inputEnabled = true;
-		// _this.GMAN_1_Screen .name = "GMAN-1";
-		// _this.GMAN_1_Screen .input.useHandCursor = true;
-		// _this.GMAN_1_Screen .events.onInputDown.add(function(target){
-		// 	_this.time.events.add(300, function(){
-		// 		if(_this.tap)
-		// 		{					
-		// 			_this.time.events.removeAll();
-		// 			target.events.onInputDown.removeAll();
-		// 			_this.clickSound = _this.add.audio('ClickSound');
-		// 			_this.clickSound.play();
-		// 			_this.state.start('GMAN_01_G6level1',true,false);
-		// 		}
-		// 	},_this);
-		// },_this);
-		
-
 		if(window.languageSelected=="Hindi")
 		{
 			//_this.topicTitleText.frame = 1;
@@ -534,15 +440,6 @@ Game.grade8Geometry.prototype={
 		_this.grade8ShapesGroup.add(_this.GMSS_3_Screen);
 		_this.grade8ShapesGroup.add(_this.bgGraphicNum3);
 		_this.grade8ShapesGroup.add(_this.GMSS_3_ScreenTxt);
-		// _this.grade8ShapesGroup.add(_this.GMS_4_Screen);
-		// _this.grade8ShapesGroup.add(_this.bgGraphicFr4);
-		// _this.grade8ShapesGroup.add(_this.GMS_4_ScreenTxt);
-		// _this.grade8ShapesGroup.add(_this.GMCR_1_Screen);
-		// _this.grade8ShapesGroup.add(_this.bgGraphicNum5);
-		// _this.grade8ShapesGroup.add(_this.GMCR_1_ScreenTxt);
-		// _this.grade8ShapesGroup.add(_this.GMAN_1_Screen);
-		// _this.grade8ShapesGroup.add(_this.bgGraphicNum6);
-		// _this.grade8ShapesGroup.add(_this.GMAN_1_ScreenTxt);
 			
 	},
 	
@@ -820,31 +717,6 @@ Game.grade8Geometry.prototype={
 		}
 		document.removeEventListener("online", _this.syncTelFunc, false);
 		
-		// if(this.video)
-		// {
-		// 	this.video.destroy();
-		// 	this.video.removeVideoElement();
-		// 	this.video = null;
-		// }
-		
-		// if(this.video1)
-		// {
-		// 	this.video1.destroy();
-		// 	this.video1.removeVideoElement();
-		// 	this.video1 = null;
-		// }
-		// if(this.video2)
-		// {
-		// 	this.video2.destroy();
-		// 	this.video2.removeVideoElement();
-		// 	this.video2 = null;
-		// }
-		// if(this.video3)
-		// {
-		// 	this.video3.destroy();
-		// 	this.video3.removeVideoElement();
-		// 	this.video3 = null;
-		// }
 	},
 
 	convertTimeinMinandSectoHrsMinsSecs :function(Hours1,Minutes1,Seconds1)
@@ -875,6 +747,5 @@ Game.grade8Geometry.prototype={
 		{
 			BBplusplusdbDetails.updateRecordsUsingGameID(save_assessment);
 		}
-
 	}	
 };

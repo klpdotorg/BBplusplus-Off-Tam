@@ -101,21 +101,7 @@ Game.selectgrade6MicroConceptScreen.prototype={
 			this.microConceptTopics(game,300,220,window.selctedLang.McTopicText1,"NUMBER SYSTEMS","tree1",0);
 			this.microConceptTopics(game,480,350,window.selctedLang.McTopicText2,"ALGEBRA","tree2",1);
 			this.microConceptTopics(game,670,220,window.selctedLang.McTopicText4,"GEOMETRY","tree3",2);
-			// this.microConceptTopics(game,860,320,window.selctedLang.McTopicText4,"GEOMETRY","tree4",3);
-			// this.microConceptTopics(game,110,320,window.selctedLang.McTopicText5,"DECIMALS","tree5",4);
-			//"conversionTitle":"CONVERSION",
-			// "NSD_3A_Screen":"1",
-			// "NSD_3B_Screen":"2",
-			// "NSD_2A_Screen":"3",
-			// "NSD_2B_Screen":"4",
-			// "NSD_1_Screen":"5",
-			// "NSD_6A_Screen":"6",
-			// "NSD_6B_Screen":"7",
-			// "NSD_4A_Screen":"8",
-			// "NSD_4B_Screen":"9"	,
-			// "NSD_4E_Screen":"10",
-			// "NSD_4C_Screen":"11",
-			// "NSD_4D_Screen":"12"		
+			
 		}
 	},
 
@@ -243,10 +229,6 @@ Game.selectgrade6MicroConceptScreen.prototype={
 	        delete: true
 	    });
 
-
-		//downloader.init({folder: "www", fileSystem:window.directoryPath, unzip: true, delete: true});
-		//downloader.get(url);
-
 		this.downlodPopupGrp.visible = true;
 		//this.game.input.enabled = false;
 
@@ -292,36 +274,6 @@ Game.selectgrade6MicroConceptScreen.prototype={
 
 		  location.reload(); 
 		  
-		  //_this.setDownloadComplete(target);
-
-
-		  /*//alert(_this.downloading);
-		  if(target.name=="NUMBER SENSE")
-		{
-			_this.numberSense1Downloaded = true;
-		}
-		else if(target.name=="MEASUREMENT")
-		{
-			_this.measurement1Downloaded = true;
-		}
-		else if(target.name=="NUMBER OPERATIONS")
-		{
-			_this.numperoperation1Downloaded = true;
-		}
-
-		var retVal = confirm("Download complete do you want to reload the game?");
-               if( retVal == true ){
-               	  location.reload(); 
-                  //return true;
-               }
-               else{
-               	
-                  //return false;
-              }
-
-
-
-		  //_this.confirmReload();*/
 		});
 
 		document.addEventListener("DOWNLOADER_unzipError", function(event){

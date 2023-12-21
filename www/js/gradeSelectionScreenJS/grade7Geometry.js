@@ -14,25 +14,6 @@ Game.grade7Geometry.prototype = {
 
 		document.addEventListener("online", _this.syncTelFunc, false);
 
-		// //Variables used for user progress
-		// _this.userHasPlayed = userHasPlayed;
-		// _this.timeInMinutes = timeInMinutes;
-		// _this.timeInSeconds = timeInSeconds;
-		// _this.score = score;
-		// _this.game_id = game_id;
-		// _this.gradeTopics = gradeTopics;
-		// _this.grade = grade;
-		// _this.microConcepts = microConcepts;
-
-		// console.log("inside geometry menu",_this.userHasPlayed,_this.timeInMinutes,_this.timeInSeconds,_this.game_id,_this.score);
-
-		// if(_this.userHasPlayed !=0 && _this.timeInMinutes != undefined && _this.timeInSeconds != undefined && _this.game_id != undefined && _this.score != 0 && _this.gradeTopics != undefined && _this.grade != undefined && _this.microConcepts != undefined)
-		// {
-		// 	var objData = {
-		// 		game_id:_this.game_id,
-		// 	}
-		// 	BBplusplusdbDetails.bbplusplusdbhandler.executeSql('SELECT totalLearingTimeinHrs AS Hrs, totalLearingTimeinMins As Mins, totalLearingTimeinSecs As Secs FROM UserProgress WHERE gameId ="'+objData.game_id+'"', [], this.localdatasuccess, this.localdatafailed);
-		// }
 	},
 
 	syncTelFunc: function () {
@@ -803,39 +784,6 @@ Game.grade7Geometry.prototype = {
 		_this.topicBg.drawRoundedRect(0, 0, 805, 200, 30);
 		_this.topicBg.boundsPadding = 0;
 
-		// _this.GMPAR_1_Screen = _this.add.sprite(100,120,'GMPAR_1_Screen');
-		// _this.bgGraphicInt1 = this.add.graphics(210,175);
-		// _this.bgGraphicInt1.lineStyle(0, 0xFFFFFF, 0.8);
-		// _this.bgGraphicInt1.beginFill(0x493A19, 1);
-		// _this.bgGraphicInt1.drawRoundedRect(0,0,30,30,10);
-		// _this.bgGraphicInt1.boundsPadding = 0;
-		// _this.GMPAR_1_ScreenTxt = this.add.text(225, 192, ' \n '+window.selctedLang.GMPAR_1_Screen+' \n ');
-		// _this.GMPAR_1_ScreenTxt.anchor.setTo(0.5);
-		// _this.GMPAR_1_ScreenTxt.align = 'center';
-		// _this.GMPAR_1_ScreenTxt.font = 'gradefont';
-		// _this.GMPAR_1_ScreenTxt.fontSize = 20;
-		// _this.GMPAR_1_ScreenTxt.fontWeight = 'normal';
-		// _this.GMPAR_1_ScreenTxt.fill = 'white';
-		// _this.GMPAR_1_ScreenTxt.wordWrap = true;
-		// _this.GMPAR_1_ScreenTxt.wordWrapWidth = 500;
-		// _this.GMPAR_1_Screen.inputEnabled = true;
-		// _this.GMPAR_1_Screen.input.useHandCursor = true;
-		// _this.GMPAR_1_Screen.name = "INT-1";
-		// _this.GMPAR_1_Screen.events.onInputDown.add(function(target){
-		// 	_this.time.events.add(300, function(){
-		// 		if(_this.tap)
-		// 		{
-		// 			_this.time.events.removeAll();
-		// 			target.events.onInputDown.removeAll();
-		// 			_this.clickSound = _this.add.audio('ClickSound');
-		// 			_this.clickSound.play();
-		// 			_this.state.start('preloader_GMPAR_01_G6',true,false);
-		// 		}
-		// 	},_this);
-		// },_this);
-
-
-
 		if (window.languageSelected == "Hindi") {
 			//_this.topicTitleText.frame = 1;
 			//_this.length2_1AScreenTxt.frame = 1;
@@ -857,14 +805,6 @@ Game.grade7Geometry.prototype = {
 			//_this.length2_2ScreenTxt.frame = 0;
 			//_this.length2_3ScreenTxt.frame = 0;
 		}
-
-		// _this.grade7MensurationGroup.add(_this.topicTxtBg);
-		// _this.grade7MensurationGroup.add(_this.topicTitleText);
-		// _this.grade7MensurationGroup.add(_this.topicBg);
-
-		// _this.grade7MensurationGroup.add(_this.GMPAR_1_Screen);
-		// _this.grade7MensurationGroup.add(_this.bgGraphicInt1);
-		// _this.grade7MensurationGroup.add(_this.GMPAR_1_ScreenTxt);
 
 	},
 
@@ -927,50 +867,6 @@ Game.grade7Geometry.prototype = {
 			this.video3 = null;
 		}
 	},
-	//userprogress
-
-	// localdatasuccess:function(result) {
-	// 	console.log("start localdatasuccess",result);
-	// 	console.log("start localdatasuccess"+result.rows.length);
-	// 	if(result.rows.length>0)
-	// 	{
-	// 		console.log("inside if statement",result.rows.item(0));
-	// 		console.log("mins",result.rows.item(0).Mins);
-	// 		console.log("Hrs",result.rows.item(0).Hrs);
-	// 		console.log("secs",result.rows.item(0).Secs);
-	// 		_this.convertTimeinMinandSectoHrsMinsSecs(result.rows.item(0).Hrs,result.rows.item(0).Mins,result.rows.item(0).Secs);
-	// 	}
-	// 	else {
-	// 		_this.storingGameDetails();
-	// 	}
-	// },
-
-	// localdatafailed : function(error){
-	// 	console.log(error);
-	// },
-
-
-	// storingGameDetails :function()
-	// {
-	// 	console.log("inside storingGameDetails",_this.userHasPlayed,_this.timeInMinutes,_this.timeInSeconds,_this.game_id);
-	// 	console.log(device.serial+"_"+device.uuid);
-	// 	var save_assessment ={
-	// 		device_id:device.serial+"_"+device.uuid,
-	// 		grade: _this.grade,
-	// 		microConcept: _this.microConcepts,
-	// 		gradeTopics:_this.gradeTopics,
-	// 		game_id:_this.game_id,
-	// 		totalLearningTimeinHrs:'0',
-	// 		totalLearningTimeinMins:_this.timeInMinutes.toString(),
-	// 		totalLearningTimeinSecs:_this.timeInSeconds.toString(),
-	// 		score:_this.score,
-	// 	}
-	// 	console.log("save assessment",save_assessment.microConcept);
-	// 	if(_this.userHasPlayed == 1)
-	// 	{
-	// 		BBplusplusdbDetails.userProgressSaving(save_assessment);
-	// 	}
-	// },
 
 	convertTimeinMinandSectoHrsMinsSecs: function (Hours1, Minutes1, Seconds1) {
 		console.log("inside convert time", Hours1, Minutes1, Seconds1);
