@@ -77,14 +77,14 @@ Game.score.prototype = {
 		_this.shareBtn = _this.add.sprite(_this.world.centerX - 56, _this.world.centerY, 'shareIconScore');
 		//_this.shareBtn.scale.setTo(1);
 		_this.shareBtn.anchor.setTo(0.5);
-		_this.shareBtn.inputEnabled = true;
-		_this.shareBtn.events.onInputDown.add(function () {
-			//_this.shareBtn.events.onInputDown.removeAll();
-			_this.clickSound = _this.add.audio('ClickSound');
-			_this.clickSound.play();
-			nativeApp.ShareApp();
+		// _this.shareBtn.inputEnabled = true;
+		// _this.shareBtn.events.onInputDown.add(function () {
+		// 	//_this.shareBtn.events.onInputDown.removeAll();
+		// 	_this.clickSound = _this.add.audio('ClickSound');
+		// 	_this.clickSound.play();
+		// 	nativeApp.ShareApp();
 
-		}, _this);
+		// }, _this);
 
 
 		_this.nextBtn = _this.add.sprite(_this.world.centerX + 170, _this.world.centerY, 'CommonNextBtn');

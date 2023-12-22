@@ -72,9 +72,9 @@ Game.appLoginScreen.prototype = {
 
 		}
 
-		this.helpIcon = this.add.image(500, 42, 'helpIcon');
-		this.helpIcon.scale.setTo(1);
-		this.helpIcon.anchor.setTo(0.5);
+		// this.helpIcon = this.add.image(500, 42, 'helpIcon');
+		// this.helpIcon.scale.setTo(1);
+		// this.helpIcon.anchor.setTo(0.5);
 		// this.helpIcon.inputEnabled = true;
 		// this.helpIcon.input.useHandCursor = true;
 		// this.helpIcon.events.onInputDown.add(function () {

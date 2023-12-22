@@ -89,14 +89,14 @@ Game.selectgrade7MicroConceptScreen.prototype={
 			this.gameModeShareBtn = game.add.image(920,20,'shareIcon');
 			this.gameModeShareBtn.anchor.setTo(0.5);
 			this.gameModeShareBtn.scale.setTo(0.8);
-			this.gameModeShareBtn.inputEnabled = true;
-			this.gameModeShareBtn.input.useHandCursor = true;
-			this.gameModeShareBtn.events.onInputDown.add(function()
-			{
-				this.clickSound = this.add.audio('ClickSound');
-				this.clickSound.play();
-        		nativeApp.ShareApp();
-        	},this);
+			// this.gameModeShareBtn.inputEnabled = true;
+			// this.gameModeShareBtn.input.useHandCursor = true;
+			// this.gameModeShareBtn.events.onInputDown.add(function()
+			// {
+			// 	this.clickSound = this.add.audio('ClickSound');
+			// 	this.clickSound.play();
+        	// 	nativeApp.ShareApp();
+        	// },this);
 
 			this.microConceptTopics(game,300,220,window.selctedLang.McTopicText1,"NUMBER SYSTEMS","tree1",0);
 			this.microConceptTopics(game,480,350,window.selctedLang.McTopicText2,"ALGEBRA","tree2",1);
