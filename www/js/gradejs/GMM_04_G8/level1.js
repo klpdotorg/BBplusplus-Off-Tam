@@ -2491,13 +2491,14 @@ Game.GMM_04_G8level1.prototype = {
     _this.x = 70;
     // set the number pad invisible initially. only after tweening it is made visible
     _this.numGroup.visible = false;
-    if (
-      _this.BoxClicked2 == 2 ||
-      _this.circleRad == true ||
-      _this.part4 == true
-    )
-      cn = 10;
-    else cn = 11;
+    // if (
+    //   _this.BoxClicked2 == 2 ||
+    //   _this.circleRad == true ||
+    //   _this.part4 == true
+    // )
+    //   cn = 10;
+    // else cn = 11;
+    cn = 11;
     for (var i = 0; i < cn; i++) {
       _this.numbg = _this.numGroup.create(_this.x, 552, "Numberpad");
       _this.numbg.anchor.setTo(0.5);
@@ -2507,17 +2508,20 @@ Game.GMM_04_G8level1.prototype = {
 
       _this.numbg.inputEnabled = true;
       _this.numbg.input.useHandCursor = true;
-      if (
-        _this.BoxClicked2 == 2 ||
-        _this.circleRad == true ||
-        _this.part4 == true
-      ) {
-        _this.numbg.events.onInputDown.add(_this.numClicked, _this);
-        _this.x += 75;
-      } else {
-        _this.numbg.events.onInputDown.add(_this.numClicked2, _this); //ans string one
-        _this.x += 65;
-      }
+      // if (
+      //   _this.BoxClicked2 == 2 ||
+      //   _this.circleRad == true ||
+      //   _this.part4 == true
+      // ) {
+      //   _this.numbg.events.onInputDown.add(_this.numClicked, _this);
+      //   _this.x += 75;
+      // } else {
+      //   _this.numbg.events.onInputDown.add(_this.numClicked2, _this); //ans string one
+      //   _this.x += 65;
+      // }
+
+      _this.numbg.events.onInputDown.add(_this.numClicked2, _this); //ans string one
+      _this.x += 65;
     }
     _this.wrongbtn = _this.numGroup.create(_this.x + 10, 552, "Numberpad");
     _this.wrongbtn.frame = 11;
@@ -2550,6 +2554,77 @@ Game.GMM_04_G8level1.prototype = {
     //tween in the number pad after a second.
     _this.tweenNumPad();
   },
+  // addNumberPad: function () {
+  //   _this.Choice = 1;
+  //   _this.objGroup = _this.add.group();
+  //   _this.numGroup = _this.add.group();
+  //   var bottomnumpadbg = _this.numGroup.create(0, 515, "numpadbg");
+  //   bottomnumpadbg.scale.setTo(1, 1);
+
+  //   bottomnumpadbg.name = "numpadbg";
+
+  //   _this.x = 70;
+  //   // set the number pad invisible initially. only after tweening it is made visible
+  //   _this.numGroup.visible = false;
+  //   if (
+  //     _this.BoxClicked2 == 2 ||
+  //     _this.circleRad == true ||
+  //     _this.part4 == true
+  //   )
+  //     cn = 10;
+  //   else cn = 11;
+  //   for (var i = 0; i < cn; i++) {
+  //     _this.numbg = _this.numGroup.create(_this.x, 552, "Numberpad");
+  //     _this.numbg.anchor.setTo(0.5);
+  //     // _this.numbg.scale.setTo(0.8, 0.8);
+  //     _this.numbg.name = i + 1;
+  //     _this.numbg.frame = i;
+
+  //     _this.numbg.inputEnabled = true;
+  //     _this.numbg.input.useHandCursor = true;
+  //     if (
+  //       _this.BoxClicked2 == 2 ||
+  //       _this.circleRad == true ||
+  //       _this.part4 == true
+  //     ) {
+  //       _this.numbg.events.onInputDown.add(_this.numClicked, _this);
+  //       _this.x += 75;
+  //     } else {
+  //       _this.numbg.events.onInputDown.add(_this.numClicked2, _this); //ans string one
+  //       _this.x += 65;
+  //     }
+  //   }
+  //   _this.wrongbtn = _this.numGroup.create(_this.x + 10, 552, "Numberpad");
+  //   _this.wrongbtn.frame = 11;
+  //   _this.wrongbtn.anchor.setTo(0.5);
+  //   // _this.wrongbtn.scale.setTo(0.8, 0.8);
+  //   _this.wrongbtn.name = "wrongbtn";
+  //   _this.wrongbtn.inputEnabled = true;
+  //   _this.wrongbtn.input.useHandCursor = true;
+  //   _this.wrongbtn.events.onInputDown.add(_this.wrongbtnClicked, _this);
+
+  //   _this.rightbtn = _this.numGroup.create(_this.x + 72, 552, "Numberpad");
+  //   _this.rightbtn.frame = 12;
+  //   _this.rightbtn.anchor.setTo(0.5);
+  //   // _this.rightbtn.scale.setTo(0.8, 0.8);
+  //   _this.rightbtn.name = "rightbtn";
+  //   _this.rightbtn.inputEnabled = true;
+  //   _this.rightbtn.input.useHandCursor = true;
+  //   _this.rightbtn.events.onInputDown.add(_this.rightbtnClicked1, _this);
+
+  //   _this.enterTxt = _this.add.text(-100, 8, "");
+  //   _this.enterTxt.anchor.setTo(0.5);
+  //   _this.enterTxt.align = "center";
+  //   _this.enterTxt.font = "Akzidenz-Grotesk BQ";
+  //   _this.enterTxt.fontSize = "30px";
+  //   _this.enterTxt.fontWeight = "normal";
+  //   _this.enterTxt.fill = "#65B4C3";
+
+  //   _this.numpadTween = _this.add.tween(_this.numGroup);
+  //   //_this.AnswerBox.visible=true;
+  //   //tween in the number pad after a second.
+  //   _this.tweenNumPad();
+  // },
   numClicked: function (target) {
     _this.clickSound.currentTime = 0;
     _this.clickSound.play();
@@ -2611,6 +2686,7 @@ Game.GMM_04_G8level1.prototype = {
     _this.enterTxt.visible = true;
     _this.AnswerBox.name = Number("" + var_selectedAns1 + var_selectedAns2);
   },
+
   numClicked2: function (target) {
     _this.clickSound.currentTime = 0;
     _this.clickSound.play();
@@ -2619,7 +2695,10 @@ Game.GMM_04_G8level1.prototype = {
     else if (target.name == 10) var_selectedAns1 = 0;
     else var_selectedAns1 = target.name;
 
-    if (_this.table1 == true || _this.table2 == true) {
+    if (_this.circleRad == true || _this.BoxClicked2 == 2) {
+      max = 3
+    }
+    else if (_this.table1 == true || _this.table2 == true) {
       max = 6;
       _this.box_1.removeChild(_this.enterTxt);
     } else {
@@ -2664,8 +2743,30 @@ Game.GMM_04_G8level1.prototype = {
     _this.enterTxt.fill = "#65B4C3";
     _this.enterTxt.fontWeight = "normal";
 
+    if (_this.circleRad == true || _this.part4 == true) {
+      _this.enterTxt.x -= 46
+    }
+    if (_this.circleRad == true && _this.area == 1) {
+      _this.enterTxt.x -= 46
+    }
+    if (_this.part4 == true) {
+      _this.enterTxt.x -= 110
+    }
+    if (_this.BoxClicked2 == 2) {
+      _this.enterTxt.x -= (180 - 12)
+    }
     if (_this.part3 == true || _this.part31 == true || _this.part5 == true)
       _this.enterTxt.x -= 155;
+
+
+    if (!_this.ansString.includes(".") && (_this.circleRad == true || _this.BoxClicked2 == 2) && _this.ansString.length > 2) {
+      _this.enterTxt.x -= 4
+    }
+    else if (!_this.ansString.includes(".") && (_this.part4 == true) && _this.ansString.length > 2) {
+      _this.enterTxt.x -= 6
+    } else if (!_this.ansString.includes(".") && _this.ansString.length > 4) {
+      _this.enterTxt.x -= 6
+    }
 
     if (_this.table1 == true || _this.table2 == true) {
       _this.enterTxt.y = 94;
@@ -2681,6 +2782,76 @@ Game.GMM_04_G8level1.prototype = {
       _this.AnswerBox.name = Number("" + _this.ansString);
     }
   },
+  // numClicked2: function (target) {
+  //   _this.clickSound.currentTime = 0;
+  //   _this.clickSound.play();
+
+  //   if (target.name == 11) var_selectedAns1 = ".";
+  //   else if (target.name == 10) var_selectedAns1 = 0;
+  //   else var_selectedAns1 = target.name;
+
+  //   if (_this.table1 == true || _this.table2 == true) {
+  //     max = 6;
+  //     _this.box_1.removeChild(_this.enterTxt);
+  //   } else {
+  //     max = 5;
+  //     _this.AnswerBox.removeChild(_this.enterTxt);
+  //   }
+  //   _this.enterTxt.visible = false;
+
+  //   if (!_this.ansString || _this.ansString.length < max) {
+  //     if (!_this.ansString) _this.ansString = "";
+  //     _this.ansString += var_selectedAns1;
+  //   }
+
+  //   if (_this.ansString.length == 1)
+  //     _this.enterTxt = _this.add.text(95, 20, "" + _this.ansString, {
+  //       fontSize: "30px",
+  //     });
+  //   else if (_this.ansString.length == 2)
+  //     _this.enterTxt = _this.add.text(90, 20, "" + _this.ansString, {
+  //       fontSize: "30px",
+  //     });
+  //   else if (_this.ansString.length == 3)
+  //     _this.enterTxt = _this.add.text(85, 20, "" + _this.ansString, {
+  //       fontSize: "30px",
+  //     });
+  //   else if (_this.ansString.length == 4)
+  //     _this.enterTxt = _this.add.text(80, 20, "" + _this.ansString, {
+  //       fontSize: "30px",
+  //     });
+  //   else if (_this.ansString.length == 5)
+  //     _this.enterTxt = _this.add.text(75, 20, "" + _this.ansString, {
+  //       fontSize: "30px",
+  //     });
+  //   else if (_this.ansString.length == 6)
+  //     _this.enterTxt = _this.add.text(70, 20, "" + _this.ansString, {
+  //       fontSize: "30px",
+  //     });
+
+  //   _this.enterTxt.x += 170;
+  //   _this.enterTxt.align = "right";
+  //   _this.enterTxt.font = "Akzidenz-Grotesk BQ";
+  //   _this.enterTxt.fill = "#65B4C3";
+  //   _this.enterTxt.fontWeight = "normal";
+
+  //   if (_this.part3 == true || _this.part31 == true || _this.part5 == true)
+  //     _this.enterTxt.x -= 155;
+
+  //   if (_this.table1 == true || _this.table2 == true) {
+  //     _this.enterTxt.y = 94;
+  //     _this.enterTxt.x -= 10;
+  //     if (_this.table2 == true) _this.enterTxt.y = 177;
+
+  //     _this.box_1.addChild(_this.enterTxt);
+  //     _this.enterTxt.visible = true;
+  //     _this.box_1.name = Number("" + _this.ansString);
+  //   } else {
+  //     _this.AnswerBox.addChild(_this.enterTxt);
+  //     _this.enterTxt.visible = true;
+  //     _this.AnswerBox.name = Number("" + _this.ansString);
+  //   }
+  // },
   tweenNumPad: function () {
     _this.numGroup.visible = true;
     _this.numpadTween.to({ x: 0, y: -43 }, 1000, "Linear", true, 0);
@@ -2777,7 +2948,6 @@ Game.GMM_04_G8level1.prototype = {
     _this.tick.input.useHandCursor = true;
     _this.tick.events.onInputDown.add(_this.rightbtnClicked1, _this);
   },
-  //* Validation for part A
   rightbtnClicked1: function (target) {
     console.log("rightbtnClicked1");
     _this.clickSound.currentTime = 0;
@@ -2786,7 +2956,7 @@ Game.GMM_04_G8level1.prototype = {
     if (_this.circleRad == true) {
       console.log("rightbtnClicked1..");
       if (
-        Number("" + _this.selectedAns1 + _this.selectedAns2) == _this.radius
+        Number("" + _this.ansString) == _this.radius
       ) {
         _this.counterCelebrationSound.currentTime = 0;
         _this.counterCelebrationSound.play();
@@ -2834,7 +3004,6 @@ Game.GMM_04_G8level1.prototype = {
           _this.geneatePerimeterAreaOptions();
         }
       } else {
-        _this.noofAttempts++;
         _this.wrongans.play();
         _this.eraseScreen();
       }
@@ -2885,13 +3054,14 @@ Game.GMM_04_G8level1.prototype = {
             });
           }
         } else {
-          _this.noofAttempts++;
           _this.wrongans.play();
           _this.eraseScreen();
         }
       } else if (_this.BoxClicked2 == 2) {
         if (
-          Number("" + _this.selectedAns1 + _this.selectedAns2) ==
+          // Number("" + _this.selectedAns1 + _this.selectedAns2) ==
+          Number("" + _this.ansString) ==
+
           _this.findPerimetrValue()
         ) {
           _this.Box2.inputEnabled = false;
@@ -2907,8 +3077,8 @@ Game.GMM_04_G8level1.prototype = {
           ans = `P = ${_this.AnswerBox.name} m`;
           _this.perimterText2 = _this.add.text(
             _this.smallerShape.x +
-              _this.smallerShape.width / 2 -
-              ans.length * 5,
+            _this.smallerShape.width / 2 -
+            ans.length * 5,
             _this.smallerShape.y + _this.smallerShape.height / 2 - 6,
             ans
           );
@@ -2941,7 +3111,6 @@ Game.GMM_04_G8level1.prototype = {
             });
           }
         } else {
-          _this.noofAttempts++;
           _this.wrongans.play();
           _this.eraseScreen();
         }
@@ -2991,9 +3160,8 @@ Game.GMM_04_G8level1.prototype = {
           _this.BoxClicked1 = 0;
           _this.biggerShape.inputEnabled = false;
 
-          ans = `A = ${(3.14 * _this.radius * _this.radius).toFixed(2)} m${
-            _this.power
-          }`;
+          ans = `A = ${(3.14 * _this.radius * _this.radius).toFixed(2)} m${_this.power
+            }`;
           _this.perimterText = _this.add.text(
             _this.biggerShape.x + _this.biggerShape.width / 2 - ans.length * 4,
             _this.biggerShape.y + _this.biggerShape.height / 2 - 6,
@@ -3020,13 +3188,12 @@ Game.GMM_04_G8level1.prototype = {
             });
           }
         } else {
-          _this.noofAttempts++;
           _this.wrongans.play();
           _this.eraseScreen();
         }
       } else if (_this.BoxClicked2 == 2) {
         if (
-          Number("" + _this.selectedAns1 + _this.selectedAns2) ==
+          Number("" + _this.ansString) ==
           _this.findPerimetrValue()
         ) {
           _this.counterCelebrationSound.currentTime = 0;
@@ -3035,13 +3202,15 @@ Game.GMM_04_G8level1.prototype = {
           _this.pairImage.destroy();
           _this.graphicsP.destroy();
 
-          _this.areaAns2 = Number("" + _this.selectedAns1 + _this.selectedAns2);
+          // _this.areaAns2 = Number("" + _this.selectedAns1 + _this.selectedAns2);
+          _this.areaAns2 = Number("" + _this.ansString);
+
 
           ans = `A = ${_this.AnswerBox.name} m${_this.power}`;
           _this.perimterText2 = _this.add.text(
             _this.smallerShape.x +
-              _this.smallerShape.width / 2 -
-              ans.length * 5,
+            _this.smallerShape.width / 2 -
+            ans.length * 5,
             _this.smallerShape.y + _this.smallerShape.height / 2 - 6,
             ans
           );
@@ -3077,7 +3246,6 @@ Game.GMM_04_G8level1.prototype = {
             });
           }
         } else {
-          _this.noofAttempts++;
           _this.wrongans.play();
           _this.eraseScreen();
         }
@@ -3098,21 +3266,16 @@ Game.GMM_04_G8level1.prototype = {
         _this.choice[0] == 0
       ) {
         _this.celebrationSound.play();
-        _this.noofAttempts++;
-        telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
         _this.starActions();
         _this.numGroup.destroy();
         _this.numpad = 0;
         _this.part3 = false;
         _this.part31 = true;
-        _this.noofAttempts = 0;
-        _this.AnsTimerCount = 0;
         _this.eraseScreen();
         _this.stopAllSounds();
         _this.choice = [1, 0];
         _this.occupyBiggr();
       } else {
-        _this.noofAttempts++;
         _this.wrongans.play();
         _this.eraseScreen();
       }
@@ -3122,30 +3285,23 @@ Game.GMM_04_G8level1.prototype = {
         _this.choice[0] == 1
       ) {
         _this.celebrationSound.play();
-        _this.noofAttempts++;
-        telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
         _this.starActions();
         _this.numGroup.destroy();
         _this.numpad = 0;
         _this.part31 = false;
-        _this.noofAttempts = 0;
-        _this.AnsTimerCount = 0;
         _this.eraseScreen();
         _this.stopAllSounds();
         _this.fillShape();
       } else {
-        _this.noofAttempts++;
         _this.wrongans.play();
         _this.eraseScreen();
       }
     } else if (_this.part4 == true) {
       if (
-        Number("" + _this.selectedAns1 + _this.selectedAns2) ==
+        Number("" + _this.ansString) ==
         _this.smallerGrp.children.length * _this.areaAns2
       ) {
         _this.celebrationSound.play();
-        _this.noofAttempts++;
-        telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
         _this.starActions();
         _this.numGroup.destroy();
         _this.numpad = 0;
@@ -3159,8 +3315,6 @@ Game.GMM_04_G8level1.prototype = {
           });
           _this.biggerShape.frame = 1;
           _this.finalPart = true;
-          _this.noofAttempts = 0;
-        _this.AnsTimerCount = 0;
           _this.addNumberPad();
           _this.stopAllSounds();
           console.log("_this.Ask_Question10");
@@ -3168,7 +3322,6 @@ Game.GMM_04_G8level1.prototype = {
           _this.Question_flag = 10;
         });
       } else {
-        _this.noofAttempts++;
         _this.wrongans.play();
         _this.eraseScreen();
       }
@@ -3186,12 +3339,426 @@ Game.GMM_04_G8level1.prototype = {
         _this.eraseScreen();
         _this.correctAns();
       } else {
-        _this.noofAttempts++;
         _this.wrongans.play();
         _this.eraseScreen();
       }
     }
   },
+  // //* Validation for part A
+  // rightbtnClicked1: function (target) {
+  //   console.log("rightbtnClicked1");
+  //   _this.clickSound.currentTime = 0;
+  //   _this.clickSound.play();
+
+  //   if (_this.circleRad == true) {
+  //     console.log("rightbtnClicked1..");
+  //     if (
+  //       Number("" + _this.selectedAns1 + _this.selectedAns2) == _this.radius
+  //     ) {
+  //       _this.counterCelebrationSound.currentTime = 0;
+  //       _this.counterCelebrationSound.play();
+  //       _this.circleRad = false;
+  //       _this.AnswerBox.destroy();
+  //       _this.eraseScreen();
+  //       _this.perimeterM.destroy();
+  //       _this.perimeter.destroy();
+  //       _this.numGroup.destroy();
+
+  //       if (_this.perimeterVar == 1) {
+  //         _this.stopAllSounds();
+  //         _this.Question_flag = 12;
+  //         _this.time.events.add(500, () => {
+  //           console.log("_this.Ask_Question12");
+  //           _this.Ask_Question12.play();
+  //         });
+  //         _this.AnswerBox = _this.add.image(532, 175 + 8, "redBox");
+  //         _this.perimeter = _this.add.text(
+  //           562,
+  //           197 + 8,
+  //           "P" + " " + "= 2 X 3.14 X " + _this.radius + " = "
+  //         );
+  //         _this.applyingStyle(_this.perimeter);
+  //         _this.perimeter.fill = "#FFFFFF";
+  //         _this.AnswerBox.scale.setTo(0.45);
+  //         _this.geneatePerimeterAreaOptions();
+  //       } else {
+  //         _this.stopAllSounds();
+  //         _this.Question_flag = 13;
+  //         _this.time.events.add(500, () => {
+  //           console.log("_this.Ask_Question13");
+  //           _this.Ask_Question13.play();
+  //         });
+
+  //         _this.AnswerBox = _this.add.image(532, 175 + 8, "redBox");
+  //         _this.perimeter = _this.add.text(
+  //           562,
+  //           197 + 8,
+  //           "A" + " = 3.14 X " + _this.radius * _this.radius + " = "
+  //         );
+  //         _this.applyingStyle(_this.perimeter);
+  //         _this.perimeter.fill = "#FFFFFF";
+  //         _this.AnswerBox.scale.setTo(0.45);
+  //         _this.geneatePerimeterAreaOptions();
+  //       }
+  //     } else {
+  //       _this.noofAttempts++;
+  //       _this.wrongans.play();
+  //       _this.eraseScreen();
+  //     }
+  //   } else if (_this.perimeterVar == 1) {
+  //     if (_this.BoxClicked1 == 1) {
+  //       // if (Number('' + _this.ansString) == (2 * 3.14 * _this.radius).toFixed(2)) {
+  //       if (_this.ansString == _this.fmstring) {
+  //         _this.Box1.inputEnabled = false;
+  //         _this.counterCelebrationSound.currentTime = 0;
+  //         _this.counterCelebrationSound.play();
+  //         _this.BoxClicked1 = 0;
+  //         _this.biggerShape.inputEnabled = false;
+  //         if (_this.mainShapeval != 2) {
+  //           _this.biggerShape.x -= 40;
+  //           _this.graphics.x -= 40;
+  //         }
+
+  //         _this.frm11.destroy();
+  //         _this.frm21.destroy();
+  //         _this.fmBox11.destroy();
+  //         _this.fmBox21.destroy();
+  //         _this.tick.destroy();
+
+  //         _this.clearAreaPerOptions();
+
+  //         ans = `P = ${(2 * 3.14 * _this.radius).toFixed(2)} m`;
+  //         _this.perimterText = _this.add.text(
+  //           _this.biggerShape.x + _this.biggerShape.width / 2 - ans.length * 4,
+  //           _this.biggerShape.y + _this.biggerShape.height / 2 - 6,
+  //           ans
+  //         );
+  //         _this.applyingStyleGn(_this.perimterText);
+  //         _this.perimterText.fontSize = "18px";
+
+  //         _this.perimterText.y =
+  //           _this.biggerShape.y + _this.biggerShape.height + 10;
+  //         _this.perimterText.y = 427;
+
+  //         _this.AnswerBox.destroy();
+  //         _this.eraseScreen();
+
+  //         if (_this.BoxClicked2 != 0) {
+  //           _this.Question_flag = 1;
+  //           _this.stopAllSounds();
+  //           _this.time.events.add(600, () => {
+  //             console.log("_this.Ask_Question1");
+  //             _this.Ask_Question1.play();
+  //           });
+  //         }
+  //       } else {
+  //         _this.noofAttempts++;
+  //         _this.wrongans.play();
+  //         _this.eraseScreen();
+  //       }
+  //     } else if (_this.BoxClicked2 == 2) {
+  //       if (
+  //         Number("" + _this.selectedAns1 + _this.selectedAns2) ==
+  //         _this.findPerimetrValue()
+  //       ) {
+  //         _this.Box2.inputEnabled = false;
+  //         _this.counterCelebrationSound.currentTime = 0;
+  //         _this.counterCelebrationSound.play();
+  //         _this.BoxClicked2 = 0;
+  //         _this.smallerShape.inputEnabled = false;
+
+  //         _this.clearAreaPerOptions();
+  //         _this.pairImage.destroy();
+  //         _this.graphicsP.destroy();
+
+  //         ans = `P = ${_this.AnswerBox.name} m`;
+  //         _this.perimterText2 = _this.add.text(
+  //           _this.smallerShape.x +
+  //             _this.smallerShape.width / 2 -
+  //             ans.length * 5,
+  //           _this.smallerShape.y + _this.smallerShape.height / 2 - 6,
+  //           ans
+  //         );
+  //         _this.applyingStyleGn(_this.perimterText2);
+  //         _this.perimterText2.fontSize = "18px";
+
+  //         if (_this.smallerShapeval == 3) {
+  //           _this.perimterText2.y += 9;
+  //         }
+  //         if (
+  //           _this.smallerShapeval == 3 &&
+  //           (_this.pB2 == 2 || _this.pL2 == 2)
+  //         ) {
+  //           _this.perimterText2.y += 14;
+  //         }
+  //         _this.perimterText2.y =
+  //           _this.smallerShape.y + _this.smallerShape.height + 10;
+  //         _this.perimterText2.y = 427;
+
+  //         _this.AnswerBox.destroy();
+  //         _this.eraseScreen();
+
+  //         if (_this.BoxClicked1 != 0) {
+  //           _this.Question_flag = 1;
+  //           _this.stopAllSounds();
+  //           // _this.Ask_Question1.play();
+  //           _this.time.events.add(600, () => {
+  //             console.log("_this.Ask_Question1");
+  //             _this.Ask_Question1.play();
+  //           });
+  //         }
+  //       } else {
+  //         _this.noofAttempts++;
+  //         _this.wrongans.play();
+  //         _this.eraseScreen();
+  //       }
+  //     }
+
+  //     if (_this.BoxClicked1 == 0 && _this.BoxClicked2 == 0) {
+  //       // enable boxes to select grater perimeter
+  //       _this.enableBoxClick();
+  //       _this.mainclick = false;
+  //       _this.pairclick = false;
+  //       _this.stopAllSounds();
+  //       _this.time.events.add(400, () => {
+  //         console.log("_this.Ask_Question1");
+  //         _this.Ask_Question3.play();
+  //       });
+  //       _this.Question_flag = 3;
+  //       _this.BoxClicked1 = -1;
+  //       _this.BoxClicked2 = -1;
+  //     }
+  //   } else if (_this.area == 1) {
+  //     if (_this.BoxClicked1 == 1) {
+  //       // if (Number('' + _this.ansString) == ((_this.radius * _this.radius) * 3.14).toFixed(2)) {
+  //       if (_this.ansString == _this.fmstring) {
+  //         _this.counterCelebrationSound.currentTime = 0;
+  //         _this.counterCelebrationSound.play();
+  //         _this.areaAns1 = Number(
+  //           (_this.radius * _this.radius * 3.14).toFixed(2)
+  //         );
+
+  //         _this.pairImage.destroy();
+  //         _this.graphicsP.destroy();
+
+  //         _this.frm11.destroy();
+  //         _this.frm21.destroy();
+  //         _this.fmBox11.destroy();
+  //         _this.fmBox21.destroy();
+  //         _this.tick.destroy();
+  //         _this.clearAreaPerOptions();
+
+  //         if (_this.box_x[0] == 40) {
+  //           if (_this.mainShapeval != 2) {
+  //             _this.biggerShape.x -= 40;
+  //             _this.graphics.x -= 40;
+  //           }
+  //         }
+
+  //         _this.BoxClicked1 = 0;
+  //         _this.biggerShape.inputEnabled = false;
+
+  //         ans = `A = ${(3.14 * _this.radius * _this.radius).toFixed(2)} m${
+  //           _this.power
+  //         }`;
+  //         _this.perimterText = _this.add.text(
+  //           _this.biggerShape.x + _this.biggerShape.width / 2 - ans.length * 4,
+  //           _this.biggerShape.y + _this.biggerShape.height / 2 - 6,
+  //           ans
+  //         );
+  //         _this.applyingStyleGn(_this.perimterText);
+  //         _this.perimterText.fontSize = "18px";
+
+  //         _this.perimterText.y =
+  //           _this.biggerShape.y + _this.biggerShape.height + 10;
+
+  //         _this.perimterText.y = 427;
+
+  //         _this.AnswerBox.destroy();
+  //         _this.eraseScreen();
+
+  //         if (_this.BoxClicked2 != 0) {
+  //           _this.Question_flag = 1;
+  //           _this.stopAllSounds();
+  //           // _this.Ask_Question1.play();
+  //           _this.time.events.add(600, () => {
+  //             console.log("_this.Ask_Question1");
+  //             _this.Ask_Question1.play();
+  //           });
+  //         }
+  //       } else {
+  //         _this.noofAttempts++;
+  //         _this.wrongans.play();
+  //         _this.eraseScreen();
+  //       }
+  //     } else if (_this.BoxClicked2 == 2) {
+  //       if (
+  //         Number("" + _this.selectedAns1 + _this.selectedAns2) ==
+  //         _this.findPerimetrValue()
+  //       ) {
+  //         _this.counterCelebrationSound.currentTime = 0;
+  //         _this.counterCelebrationSound.play();
+  //         _this.clearAreaPerOptions();
+  //         _this.pairImage.destroy();
+  //         _this.graphicsP.destroy();
+
+  //         _this.areaAns2 = Number("" + _this.selectedAns1 + _this.selectedAns2);
+
+  //         ans = `A = ${_this.AnswerBox.name} m${_this.power}`;
+  //         _this.perimterText2 = _this.add.text(
+  //           _this.smallerShape.x +
+  //             _this.smallerShape.width / 2 -
+  //             ans.length * 5,
+  //           _this.smallerShape.y + _this.smallerShape.height / 2 - 6,
+  //           ans
+  //         );
+  //         _this.applyingStyleGn(_this.perimterText2);
+  //         _this.perimterText2.fontSize = "18px";
+
+  //         _this.BoxClicked2 = 0;
+  //         _this.smallerShape.inputEnabled = false;
+
+  //         if (_this.smallerShapeval == 3) {
+  //           _this.perimterText2.y += 9;
+  //           // _this.perimterText2.fontSize = "15px"
+  //         }
+
+  //         if (_this.smallerShapeval == 3 && _this.pB == 2) {
+  //           _this.perimterText2.y += 4;
+  //         }
+  //         _this.perimterText2.y =
+  //           _this.smallerShape.y + _this.smallerShape.height + 10;
+
+  //         _this.perimterText2.y = 427;
+
+  //         _this.AnswerBox.destroy();
+  //         _this.eraseScreen();
+
+  //         if (_this.BoxClicked1 != 0) {
+  //           _this.Question_flag = 1;
+  //           _this.stopAllSounds();
+  //           // _this.Ask_Question1.play();
+  //           _this.time.events.add(600, () => {
+  //             console.log("_this.Ask_Question1");
+  //             _this.Ask_Question1.play();
+  //           });
+  //         }
+  //       } else {
+  //         _this.noofAttempts++;
+  //         _this.wrongans.play();
+  //         _this.eraseScreen();
+  //       }
+  //     }
+  //     if (_this.BoxClicked1 == 0 && _this.BoxClicked2 == 0) {
+  //       _this.enableBoxClick();
+  //       _this.area = 0;
+  //       _this.stopAllSounds();
+  //       _this.time.events.add(400, () => {
+  //         console.log("_this.Ask_Question6");
+  //         _this.Ask_Question6.play();
+  //       });
+  //       _this.Question_flag = 6;
+  //     }
+  //   } else if (_this.part3 == true) {
+  //     if (
+  //       Number("" + _this.ansString) == _this.areaAns1 + _this.areaAns2 &&
+  //       _this.choice[0] == 0
+  //     ) {
+  //       _this.celebrationSound.play();
+  //       _this.noofAttempts++;
+  //       telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
+  //       _this.starActions();
+  //       _this.numGroup.destroy();
+  //       _this.numpad = 0;
+  //       _this.part3 = false;
+  //       _this.part31 = true;
+  //       _this.noofAttempts = 0;
+  //       _this.AnsTimerCount = 0;
+  //       _this.eraseScreen();
+  //       _this.stopAllSounds();
+  //       _this.choice = [1, 0];
+  //       _this.occupyBiggr();
+  //     } else {
+  //       _this.noofAttempts++;
+  //       _this.wrongans.play();
+  //       _this.eraseScreen();
+  //     }
+  //   } else if (_this.part31 == true) {
+  //     if (
+  //       Number("" + _this.ansString) == _this.areaAns1 - _this.areaAns2 &&
+  //       _this.choice[0] == 1
+  //     ) {
+  //       _this.celebrationSound.play();
+  //       _this.noofAttempts++;
+  //       telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
+  //       _this.starActions();
+  //       _this.numGroup.destroy();
+  //       _this.numpad = 0;
+  //       _this.part31 = false;
+  //       _this.noofAttempts = 0;
+  //       _this.AnsTimerCount = 0;
+  //       _this.eraseScreen();
+  //       _this.stopAllSounds();
+  //       _this.fillShape();
+  //     } else {
+  //       _this.noofAttempts++;
+  //       _this.wrongans.play();
+  //       _this.eraseScreen();
+  //     }
+  //   } else if (_this.part4 == true) {
+  //     if (
+  //       Number("" + _this.selectedAns1 + _this.selectedAns2) ==
+  //       _this.smallerGrp.children.length * _this.areaAns2
+  //     ) {
+  //       _this.celebrationSound.play();
+  //       _this.noofAttempts++;
+  //       telInitializer.tele_saveAssessment(_this.questionid, "yes", _this.AnsTimerCount, _this.noofAttempts, _this.sceneCount);
+  //       _this.starActions();
+  //       _this.numGroup.destroy();
+  //       _this.numpad = 0;
+  //       _this.part4 = false;
+  //       _this.part5 = true;
+  //       _this.eraseScreen();
+  //       // voice 6
+  //       _this.time.events.add(500, () => {
+  //         _this.smallerGrp.forEach((element) => {
+  //           element.frame = 0;
+  //         });
+  //         _this.biggerShape.frame = 1;
+  //         _this.finalPart = true;
+  //         _this.noofAttempts = 0;
+  //       _this.AnsTimerCount = 0;
+  //         _this.addNumberPad();
+  //         _this.stopAllSounds();
+  //         console.log("_this.Ask_Question10");
+  //         _this.Ask_Question10.play();
+  //         _this.Question_flag = 10;
+  //       });
+  //     } else {
+  //       _this.noofAttempts++;
+  //       _this.wrongans.play();
+  //       _this.eraseScreen();
+  //     }
+  //   } else if (_this.part5 == true) {
+  //     if (
+  //       Number("" + _this.ansString) ==
+  //       (
+  //         _this.areaAns1 -
+  //         _this.smallerGrp.children.length * _this.areaAns2
+  //       ).toFixed(2)
+  //     ) {
+  //       _this.numGroup.destroy();
+  //       _this.numpad = 0;
+  //       _this.part5 = false;
+  //       _this.eraseScreen();
+  //       _this.correctAns();
+  //     } else {
+  //       _this.noofAttempts++;
+  //       _this.wrongans.play();
+  //       _this.eraseScreen();
+  //     }
+  //   }
+  // },
   occupyBiggr: function () {
     _this.smallerShape.bringToTop();
 
